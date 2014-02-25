@@ -9,9 +9,8 @@ import argparse
 from xml.dom.minidom import parseString
 #Global Vars:
 logging.basicConfig(filename='logxml2csv.log',level=logging.DEBUG, format='%(asctime)s %(message)s') 
-downfile = "xml-in.xml"
-elaurl = "http://www.corestandards.org/ela-literacy.xml"
-mathurl = "http://www.corestandards.org/Math.xml"
+mathfile = "Math.xml"
+elafile = "ela-literacy.xml"
 
 #seperator for the log file
 logging.info('###############New Run###############')
@@ -30,11 +29,10 @@ logging.info('Grade level is: args.grade')
 #Functions:
 
 def download(xmlurl): #Downloading the right ccss file according selection
-	xmlin = urllib2.Request(xmlurl, headers={'User-Agent: Mozilla/5.0' : "Chrome"})
-	down = urllib2.urlopen (xmlin) 
+	xmlin = urllib2.urlopen(xmlurl, headers={'User-Agent: Mozilla/5.0' : "Chrome"})
 	logging.info('Downloading the latest Math CCSS')
-	xmloutput = open('xml-in.xml','wb')
-	xmloutput.write(down.read())
+	xmloutput = open('xmli-in.xml','wb')
+	xmloutput.write(xmlin.read())
 	xmloutput.close()
 	logging.info('Download complete')
 
@@ -53,21 +51,20 @@ def parser(discpline, xml_file):
 #script:
 
 #remove old files
-#os.system("rm -rf ela-literacy.xml*")
-#os.system("rm -rf Math.xml*")
 logging.info('Removing any old CCSS files')
-if os.path.isfile(downfile):
-        os.remove(downfile)
-	logging.info('xml-in.xml DELETED')
-else:
-	logging.info('Could not found any old file to remove...')
+os.system("rm -rf ela-literacy.xml*")
+os.system("rm -rf Math.xml*")
 
 #checking for discipline 3 = ELA else - math
 if args.discpline.lower() == "ela":
-	download(elaurl);
-	parser(gradelevel,downfile)
+	logging.info('Downloading the latest ELA CCSS file')
+	os.system("wget http://www.corestandards.org/ela-literacy.xml")
+#	download(elaurl);
+	parser(gradelevel,elafile)
 
 else:
-        download(mathurl);
-	parser(u_string,downfile)
+        logging.info('Downloading the latest Math CCSS file')
+        os.system("wget http://www.corestandards.org/Math.xml")
+#       download(mathurl);
+	parser(u_string,mathfile)
 

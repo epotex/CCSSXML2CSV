@@ -1,65 +1,110 @@
-2014-02-19 19:49:02,975 Removing any old CCSS files
-2014-02-19 19:49:02,995 Downloading the latest Math CCSS file
-2014-02-19 19:49:03,380 Starting parser...
-2014-02-19 19:50:24,415 Removing any old CCSS files
-2014-02-19 19:50:24,435 Downloading the latest Math CCSS file
-2014-02-19 19:50:24,817 Starting parser...
-2014-02-19 21:00:38,929 Removing any old CCSS files
-2014-02-19 21:00:49,050 Removing any old CCSS files
-2014-02-19 21:01:36,497 Removing any old CCSS files
-2014-02-19 21:01:36,517 Downloading the latest Math CCSS file
-2014-02-19 21:01:36,924 Starting parser...
-2014-02-19 21:06:21,586 Removing any old CCSS files
-2014-02-19 21:06:21,608 Downloading the latest Math CCSS file
-2014-02-19 21:06:21,995 Starting parser...
-2014-02-19 21:06:42,093 Removing any old CCSS files
-2014-02-19 21:06:42,113 Downloading the latest Math CCSS file
-2014-02-19 21:06:42,460 Starting parser...
-2014-02-19 21:06:51,413 Removing any old CCSS files
-2014-02-19 21:06:51,434 Downloading the latest Math CCSS file
-2014-02-19 21:06:51,628 Starting parser...
-2014-02-19 21:07:07,037 Removing any old CCSS files
-2014-02-19 21:07:07,058 Downloading the latest Math CCSS file
-2014-02-19 21:07:07,415 Starting parser...
-2014-02-19 21:07:19,925 Removing any old CCSS files
-2014-02-19 21:07:19,945 Downloading the latest Math CCSS file
-2014-02-19 21:07:20,292 Starting parser...
-2014-02-19 21:08:08,259 Removing any old CCSS files
-2014-02-19 21:08:08,278 Downloading the latest Math CCSS file
-2014-02-19 21:08:08,469 Starting parser...
-2014-02-19 21:08:42,466 Removing any old CCSS files
-2014-02-19 21:08:42,486 Downloading the latest Math CCSS file
-2014-02-19 21:08:42,676 Starting parser...
-2014-02-19 21:10:04,736 Removing any old CCSS files
-2014-02-19 21:10:04,756 Downloading the latest Math CCSS file
-2014-02-19 21:10:05,113 Starting parser...
-2014-02-19 21:10:21,227 Removing any old CCSS files
-2014-02-19 21:10:21,245 Downloading the latest Math CCSS file
-2014-02-19 21:10:21,438 Starting parser...
-2014-02-19 21:13:53,364 Removing any old CCSS files
-2014-02-19 21:13:53,384 Downloading the latest Math CCSS file
-2014-02-19 21:13:53,737 Starting parser...
-2014-02-19 21:17:05,603 Removing any old CCSS files
-2014-02-19 21:17:05,622 Downloading the latest Math CCSS file
-2014-02-19 21:17:05,978 Starting parser...
-2014-02-19 21:17:24,924 Removing any old CCSS files
-2014-02-19 21:17:24,943 Downloading the latest Math CCSS file
-2014-02-19 21:17:25,309 Starting parser...
-2014-02-19 21:17:43,824 Removing any old CCSS files
-2014-02-19 21:17:43,843 Downloading the latest Math CCSS file
-2014-02-19 21:17:44,188 Starting parser...
-2014-02-19 21:17:59,178 Removing any old CCSS files
-2014-02-19 21:17:59,200 Downloading the latest Math CCSS file
-2014-02-19 21:17:59,485 Starting parser...
-2014-02-19 21:18:27,151 Removing any old CCSS files
-2014-02-19 21:18:27,171 Downloading the latest Math CCSS file
-2014-02-19 21:18:27,367 Starting parser...
-2014-02-19 21:25:33,417 Removing any old CCSS files
-2014-02-19 21:25:33,438 Downloading the latest Math CCSS file
-2014-02-19 21:25:33,817 Starting parser...
-2014-02-19 21:25:40,450 Removing any old CCSS files
-2014-02-19 21:25:40,470 Downloading the latest Math CCSS file
-2014-02-19 21:25:40,837 Starting parser...
-2014-02-19 21:25:44,962 Removing any old CCSS files
-2014-02-19 21:25:44,980 Downloading the latest Math CCSS file
-2014-02-19 21:25:45,345 Starting parser...
+2014-02-25 20:16:20,562 ###############New Run###############
+2014-02-25 20:16:28,339 ###############New Run###############
+2014-02-25 20:16:28,341 Discpline is: args.discpline
+2014-02-25 20:16:28,341 Grade level is: args.grade
+2014-02-25 20:16:28,341 Removing any old CCSS files
+2014-02-25 20:16:28,362 Downloading the latest ELA CCSS file
+2014-02-25 20:17:34,762 ###############New Run###############
+2014-02-25 20:17:34,764 Discpline is: args.discpline
+2014-02-25 20:17:34,764 Grade level is: args.grade
+2014-02-25 20:17:34,764 Removing any old CCSS files
+2014-02-25 20:17:34,782 Downloading the latest ELA CCSS file
+2014-02-25 20:19:11,788 ###############New Run###############
+2014-02-25 20:19:11,790 Discpline is: args.discpline
+2014-02-25 20:19:11,790 Grade level is: args.grade
+2014-02-25 20:19:11,790 Removing any old CCSS files
+2014-02-25 20:19:11,810 Downloading the latest ELA CCSS file
+2014-02-25 20:19:11,983 Downloading the latest Math CCSS
+2014-02-25 20:19:12,216 Download complete
+2014-02-25 20:19:12,216 Starting parser...
+2014-02-25 20:20:21,225 ###############New Run###############
+2014-02-25 20:20:21,227 Discpline is: args.discpline
+2014-02-25 20:20:21,227 Grade level is: args.grade
+2014-02-25 20:20:21,227 Removing any old CCSS files
+2014-02-25 20:20:21,247 Downloading the latest ELA CCSS file
+2014-02-25 20:20:21,462 Downloading the latest Math CCSS
+2014-02-25 20:20:21,670 Download complete
+2014-02-25 20:20:21,670 Starting parser...
+2014-02-25 20:22:22,732 ###############New Run###############
+2014-02-25 20:22:22,733 Discpline is: args.discpline
+2014-02-25 20:22:22,733 Grade level is: args.grade
+2014-02-25 20:22:22,733 Removing any old CCSS files
+2014-02-25 20:22:22,753 Downloading the latest ELA CCSS file
+2014-02-25 20:22:22,931 Downloading the latest Math CCSS
+2014-02-25 20:22:23,170 Download complete
+2014-02-25 20:22:23,170 Starting parser...
+2014-02-25 20:22:44,951 ###############New Run###############
+2014-02-25 20:22:44,952 Discpline is: args.discpline
+2014-02-25 20:22:44,953 Grade level is: args.grade
+2014-02-25 20:22:44,953 Removing any old CCSS files
+2014-02-25 20:22:44,972 Downloading the latest ELA CCSS file
+2014-02-25 20:22:45,145 Downloading the latest Math CCSS
+2014-02-25 20:22:45,376 Download complete
+2014-02-25 20:22:45,376 Starting parser...
+2014-02-25 20:23:20,944 ###############New Run###############
+2014-02-25 20:23:20,945 Discpline is: args.discpline
+2014-02-25 20:23:20,946 Grade level is: args.grade
+2014-02-25 20:23:20,946 Removing any old CCSS files
+2014-02-25 20:23:20,965 Downloading the latest ELA CCSS file
+2014-02-25 20:23:21,069 Downloading the latest Math CCSS
+2014-02-25 20:23:21,222 Download complete
+2014-02-25 20:23:21,222 Starting parser...
+2014-02-25 20:31:04,311 ###############New Run###############
+2014-02-25 20:31:04,313 Discpline is: args.discpline
+2014-02-25 20:31:04,313 Grade level is: args.grade
+2014-02-25 20:31:04,313 Removing any old CCSS files
+2014-02-25 20:31:04,332 Downloading the latest ELA CCSS file
+2014-02-25 20:31:04,507 Downloading the latest Math CCSS
+2014-02-25 20:31:04,738 Download complete
+2014-02-25 20:31:04,738 Starting parser...
+2014-02-25 20:31:32,110 ###############New Run###############
+2014-02-25 20:31:32,111 Discpline is: args.discpline
+2014-02-25 20:31:32,111 Grade level is: args.grade
+2014-02-25 20:31:32,112 Removing any old CCSS files
+2014-02-25 20:31:32,132 Downloading the latest Math CCSS file
+2014-02-25 20:32:08,938 ###############New Run###############
+2014-02-25 20:32:08,939 Discpline is: args.discpline
+2014-02-25 20:32:08,940 Grade level is: args.grade
+2014-02-25 20:32:08,940 Removing any old CCSS files
+2014-02-25 20:32:08,958 Downloading the latest Math CCSS file
+2014-02-25 20:32:09,132 Downloading the latest Math CCSS
+2014-02-25 20:32:09,305 Download complete
+2014-02-25 20:34:51,683 ###############New Run###############
+2014-02-25 20:34:51,684 Discpline is: args.discpline
+2014-02-25 20:34:51,685 Grade level is: args.grade
+2014-02-25 20:34:51,685 Removing any old CCSS files
+2014-02-25 20:34:51,685 xml-in.xml DELETED
+2014-02-25 20:34:51,685 Downloading the latest Math CCSS file
+2014-02-25 20:34:51,860 Downloading the latest Math CCSS
+2014-02-25 20:34:52,024 Download complete
+2014-02-25 20:35:03,422 ###############New Run###############
+2014-02-25 20:35:03,424 Discpline is: args.discpline
+2014-02-25 20:35:03,424 Grade level is: args.grade
+2014-02-25 20:35:03,424 Removing any old CCSS files
+2014-02-25 20:35:03,424 xml-in.xml DELETED
+2014-02-25 20:35:03,424 Downloading the latest Math CCSS file
+2014-02-25 20:35:03,601 Downloading the latest Math CCSS
+2014-02-25 20:35:03,772 Download complete
+2014-02-25 20:36:35,536 ###############New Run###############
+2014-02-25 20:36:35,538 Discpline is: args.discpline
+2014-02-25 20:36:35,538 Grade level is: args.grade
+2014-02-25 20:36:35,538 Removing any old CCSS files
+2014-02-25 20:36:35,538  could not found any old file to remove...
+2014-02-25 20:36:35,538 Downloading the latest Math CCSS file
+2014-02-25 20:36:35,713 Downloading the latest Math CCSS
+2014-02-25 20:36:35,885 Download complete
+2014-02-25 20:37:02,156 ###############New Run###############
+2014-02-25 20:37:02,158 Discpline is: args.discpline
+2014-02-25 20:37:02,158 Grade level is: args.grade
+2014-02-25 20:37:02,158 Removing any old CCSS files
+2014-02-25 20:37:02,159 xml-in.xml DELETED
+2014-02-25 20:37:02,159 Downloading the latest Math CCSS file
+2014-02-25 20:37:02,333 Downloading the latest Math CCSS
+2014-02-25 20:37:02,496 Download complete
+2014-02-25 20:37:40,442 ###############New Run###############
+2014-02-25 20:37:40,444 Discpline is: args.discpline
+2014-02-25 20:37:40,444 Grade level is: args.grade
+2014-02-25 20:37:40,444 Removing any old CCSS files
+2014-02-25 20:37:40,445 xml-in.xml DELETED
+2014-02-25 20:37:40,545 Downloading the latest Math CCSS
+2014-02-25 20:37:40,622 Download complete
