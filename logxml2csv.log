@@ -108,3 +108,83 @@
 2014-02-25 20:37:40,445 xml-in.xml DELETED
 2014-02-25 20:37:40,545 Downloading the latest Math CCSS
 2014-02-25 20:37:40,622 Download complete
+2014-02-25 20:41:34,223 ###############New Run###############
+2014-02-25 20:41:34,225 Discpline is: args.discpline
+2014-02-25 20:41:34,225 Grade level is: args.grade
+2014-02-25 20:41:34,225 Removing any old CCSS files
+2014-02-25 20:41:34,226 xml-in.xml DELETED
+2014-02-25 20:41:34,402 Downloading the latest Math CCSS
+2014-02-25 20:41:34,581 Download complete
+2014-02-25 20:41:38,838 ###############New Run###############
+2014-02-25 20:41:38,840 Discpline is: args.discpline
+2014-02-25 20:41:38,840 Grade level is: args.grade
+2014-02-25 20:41:38,840 Removing any old CCSS files
+2014-02-25 20:41:38,841 xml-in.xml DELETED
+2014-02-25 20:41:39,014 Downloading the latest Math CCSS
+2014-02-25 20:41:39,207 Download complete
+2014-02-25 20:41:42,800 ###############New Run###############
+2014-02-25 20:41:42,802 Discpline is: args.discpline
+2014-02-25 20:41:42,802 Grade level is: args.grade
+2014-02-25 20:41:42,802 Removing any old CCSS files
+2014-02-25 20:41:42,803 xml-in.xml DELETED
+2014-02-25 20:41:42,984 Downloading the latest Math CCSS
+2014-02-25 20:41:43,222 Download complete
+2014-02-25 20:41:43,222 Starting parser...
+2014-02-25 20:46:14,711 ###############New Run###############
+2014-02-25 20:46:14,712 Discpline is: args.discpline
+2014-02-25 20:46:14,712 Grade level is: args.grade
+2014-02-25 20:46:14,713 Removing any old CCSS files
+2014-02-25 20:46:14,713 xml-in.xml DELETED
+2014-02-25 20:46:14,886 Downloading the latest Math CCSS
+2014-02-25 20:46:15,213 Download complete
+2014-02-25 20:46:15,213 Starting parser...
+2014-02-25 20:46:21,863 ###############New Run###############
+2014-02-25 20:46:21,864 Discpline is: args.discpline
+2014-02-25 20:46:21,864 Grade level is: args.grade
+2014-02-25 20:46:21,865 Removing any old CCSS files
+2014-02-25 20:46:21,865 xml-in.xml DELETED
+2014-02-25 20:46:22,036 Downloading the latest Math CCSS
+2014-02-25 20:46:22,204 Download complete
+2014-02-25 20:46:25,803 ###############New Run###############
+2014-02-25 20:46:25,805 Discpline is: args.discpline
+2014-02-25 20:46:25,805 Grade level is: args.grade
+2014-02-25 20:46:25,805 Removing any old CCSS files
+2014-02-25 20:46:25,805 xml-in.xml DELETED
+2014-02-25 20:46:25,806 Unsupported discpline:, args.discpline
+2014-02-25 20:46:51,688 ###############New Run###############
+2014-02-25 20:46:51,689 Discpline is: args.discpline
+2014-02-25 20:46:51,689 Grade level is: args.grade
+2014-02-25 20:46:51,689 Removing any old CCSS files
+2014-02-25 20:46:51,690 Could not found any old file to remove...
+2014-02-25 20:46:51,791 Downloading the latest Math CCSS
+2014-02-25 20:46:52,087 Download complete
+2014-02-25 20:46:52,087 Starting parser...
+2014-02-25 20:47:44,994 ###############New Run###############
+2014-02-25 20:47:44,996 Discpline is: args.discpline
+2014-02-25 20:47:44,996 Grade level is: args.grade
+2014-02-25 20:47:44,996 Removing any old CCSS files
+2014-02-25 20:47:44,997 xml-in.xml DELETED
+2014-02-25 20:47:45,173 Downloading the latest Math CCSS
+2014-02-25 20:47:45,626 Download complete
+2014-02-25 20:47:45,627 Starting parser...
+2014-02-25 20:48:47,531 ###############New Run###############
+2014-02-25 20:48:47,533 Discpline is: args.discpline
+2014-02-25 20:48:47,533 Grade level is: args.grade
+2014-02-25 20:48:47,533 Removing any old CCSS files
+2014-02-25 20:48:47,534 xml-in.xml DELETED
+2014-02-25 20:48:47,534 Downloading the latest Ela CCSS
+2014-02-25 20:48:48,048 Download complete
+2014-02-25 20:48:48,049 Starting parser...
+2014-02-25 20:48:55,060 ###############New Run###############
+2014-02-25 20:48:55,062 Discpline is: args.discpline
+2014-02-25 20:48:55,062 Grade level is: args.grade
+2014-02-25 20:48:55,062 Removing any old CCSS files
+2014-02-25 20:48:55,063 xml-in.xml DELETED
+2014-02-25 20:48:55,063 Unsupported discpline:, args.discpline
+2014-02-25 20:49:01,016 ###############New Run###############
+2014-02-25 20:49:01,018 Discpline is: args.discpline
+2014-02-25 20:49:01,019 Grade level is: args.grade
+2014-02-25 20:49:01,019 Removing any old CCSS files
+2014-02-25 20:49:01,019 Could not found any old file to remove...
+2014-02-25 20:49:01,019 Downloading the latest Math CCSS
+2014-02-25 20:49:01,483 Download complete

@@ -3,7 +3,6 @@ import csv
 import urllib2
 import time
 import logging
-import sys
 import os
 import argparse
 from xml.dom.minidom import parseString
@@ -32,7 +31,6 @@ logging.info('Grade level is: args.grade')
 def download(xmlurl): #Downloading the right ccss file according selection
 	xmlin = urllib2.Request(xmlurl, headers={'User-Agent: Mozilla/5.0' : "Chrome"})
 	down = urllib2.urlopen (xmlin) 
-	logging.info('Downloading the latest Math CCSS')
 	xmloutput = open('xml-in.xml','wb')
 	xmloutput.write(down.read())
 	xmloutput.close()
@@ -53,8 +51,6 @@ def parser(discpline, xml_file):
 #script:
 
 #remove old files
-#os.system("rm -rf ela-literacy.xml*")
-#os.system("rm -rf Math.xml*")
 logging.info('Removing any old CCSS files')
 if os.path.isfile(downfile):
         os.remove(downfile)
@@ -64,10 +60,17 @@ else:
 
 #checking for discipline 3 = ELA else - math
 if args.discpline.lower() == "ela":
+        logging.info('Downloading the latest Ela CCSS')
 	download(elaurl);
 	parser(gradelevel,downfile)
 
-else:
+elif args.discpline.lower() == "math":
+        logging.info('Downloading the latest Math CCSS')
         download(mathurl);
 	parser(u_string,downfile)
 
+else:
+        logging.error('Unsupported discpline:, args.discpline')
+	print "Please choose Ela or Math as a discpline"
+	print "Couldn't set discpline"
+	exit()
