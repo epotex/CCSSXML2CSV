@@ -15,14 +15,16 @@ mathurl = "http://www.corestandards.org/Math.xml"
 #seperator for the log file
 logging.info('###############New Run###############')
 
-#Usage
+#Usage/parser
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-d", "--discpline", help="Choose your discpline (Ela or Math)")
-parser.add_argument("-g", "--grade", help="Choose your grade level")
+parser.add_argument("-d", "--discpline", help="set the discpline (Ela or Math)")
+parser.add_argument("-g", "--grade", help="set the grade level")
+parser.add_argument("-r", "--rfid", help="set the rfid")
 args = parser.parse_args()
 discpline = args.discpline 
 gradelevel = args.grade
+rfid = args.rfid
 logging.info('Discpline is: args.discpline')
 logging.info('Grade level is: args.grade')
 
@@ -36,14 +38,13 @@ def download(xmlurl): #Downloading the right ccss file according selection
 	xmloutput.close()
 	logging.info('Download complete')
 
-def parser(discpline, xml_file):
+def parser(u_rfid, xml_file):
 	logging.info('Starting parser...')
         file = open(xml_file,'r')
         data = file.read()
         file.close()
         dom = parseString(data)
-        xmlTag = dom.getElementsByTagName(user_string)[0].toxml()
-
+        xmlTag = dom.getElementsByTagName(u_rfid)[0].toxml()
         xmlData = xmlTag.replace('<tagName>','').replace('</tagName>','')
         print xmlTag
         print xmlData
@@ -67,7 +68,7 @@ if args.discpline.lower() == "ela":
 elif args.discpline.lower() == "math":
         logging.info('Downloading the latest Math CCSS')
         download(mathurl);
-	parser(u_string,downfile)
+	parser(rfid,downfile)
 
 else:
         logging.error('Unsupported discpline:, args.discpline')
