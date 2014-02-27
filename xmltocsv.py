@@ -6,7 +6,8 @@ import logging
 import os
 import argparse
 #from xml.dom.minidom import parseString
-from xml.etree import ElementTree
+#from xml.etree import ElementTree
+import xml.etree.ElementTree as ET
 
 
 
@@ -31,7 +32,6 @@ gradelevel = args.grade
 rfid = args.rfid
 logging.info('Discpline is: args.discpline')
 logging.info('Grade level is: args.grade')
-
 #Functions:
 
 def download(xmlurl): #Downloading the right ccss file according selection
@@ -43,35 +43,43 @@ def download(xmlurl): #Downloading the right ccss file according selection
 	logging.info('Download complete')
 
 def parser(downfile,grade_level_number):
-	document = ElementTree.parse(downfile)
-	for group in document.findall( 'GradeLevels/GradeLevels'):
-    		print group.attrib['grade_level_number']
-		
+	tree = ET.parse(downfile)
+	root = tree.getroot()
+	for regex_rule in root.findall('.//@gradelevel'):
+		print(regex_rule.get('input')) 
+#	for element in root:
+#		if element.tag.text == 'gradelevel 09':
+#			for item in element:
+#				for line in item:
+#					#print dir(line)
+#					#print line.findtext('09')
+#					print line.tag, line.text
+#
 	
-
 #script:
+if __name__ == '__main__':
 
-#remove old files
-logging.info('Removing any old CCSS files')
-if os.path.isfile(downfile):
-        os.remove(downfile)
-	logging.info('xml-in.xml DELETED')
-else:
-	logging.info('Could not found any old file to remove...')
+	#Cleaning old filees
+	logging.info('Removing any old CCSS files')
+	if os.path.isfile(downfile):
+        	os.remove(downfile)
+		logging.info('xml-in.xml DELETED')
+	else:
+		logging.info('Could not found any old file to remove...')
 
-#checking for discipline 3 = ELA else - math
-if args.discpline.lower() == "ela":
-        logging.info('Downloading the latest Ela CCSS')
-	download(elaurl);
-	parser(downfile,gradelevel)
+	#checking for discipline 3 = ELA else - math
+	if args.discpline.lower() == "ela":
+	        logging.info('Downloading the latest Ela CCSS')
+		download(elaurl);
+		parser(downfile,gradelevel)
 
-elif args.discpline.lower() == "math":
-        logging.info('Downloading the latest Math CCSS')
-        download(mathurl);
-	parser(rfid,downfile)
+	elif args.discpline.lower() == "math":
+        	logging.info('Downloading the latest Math CCSS')
+	        download(mathurl);
+		parser(downfile,gradelevel)
 
-else:
-        logging.error('Unsupported discpline:, args.discpline')
-	print "Please choose Ela or Math as a discpline"
-	print "Couldn't set discpline"
-	exit()
+	else:
+        	logging.error('Unsupported discpline:, args.discpline')
+		print "Please choose Ela or Math as a discpline"
+		print "Couldn't set discpline"
+		exit()
