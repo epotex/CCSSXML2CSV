@@ -45,16 +45,14 @@ def download(xmlurl): #Downloading the right ccss file according selection
 def parser(downfile,grade_level_number):
 	tree = ET.parse(downfile)
 	root = tree.getroot()
-	for regex_rule in root.findall('.//@gradelevel'):
-		print(regex_rule.get('input')) 
-#	for element in root:
-#		if element.tag.text == 'gradelevel 09':
-#			for item in element:
-#				for line in item:
-#					#print dir(line)
-#					#print line.findtext('09')
-#					print line.tag, line.text
-#
+	for element in root:
+		print element.tag, element.text, element.attrib
+		for item in element:
+			for line in item:
+				#print dir(line)
+				#print line.findtext('09')
+				print line.tag, line.text
+
 	
 #script:
 if __name__ == '__main__':

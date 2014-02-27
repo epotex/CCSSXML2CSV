@@ -767,3 +767,87 @@
 2014-02-27 05:11:25,590 xml-in.xml DELETED
 2014-02-27 05:11:25,590 Downloading the latest Math CCSS
 2014-02-27 05:11:25,983 Download complete
+2014-02-27 16:39:59,343 ###############New Run###############
+2014-02-27 16:39:59,345 Discpline is: args.discpline
+2014-02-27 16:39:59,345 Grade level is: args.grade
+2014-02-27 16:39:59,345 Removing any old CCSS files
+2014-02-27 16:39:59,345 Could not found any old file to remove...
+2014-02-27 16:39:59,345 Downloading the latest Ela CCSS
+2014-02-27 16:40:00,165 Download complete
+2014-02-27 16:40:15,128 ###############New Run###############
+2014-02-27 16:40:15,129 Discpline is: args.discpline
+2014-02-27 16:40:15,130 Grade level is: args.grade
+2014-02-27 16:40:15,130 Removing any old CCSS files
+2014-02-27 16:40:15,130 xml-in.xml DELETED
+2014-02-27 16:40:15,131 Downloading the latest Ela CCSS
+2014-02-27 16:40:15,983 Download complete
+2014-02-27 16:40:46,252 ###############New Run###############
+2014-02-27 16:40:46,254 Discpline is: args.discpline
+2014-02-27 16:40:46,254 Grade level is: args.grade
+2014-02-27 16:40:46,254 Removing any old CCSS files
+2014-02-27 16:40:46,255 xml-in.xml DELETED
+2014-02-27 16:40:46,255 Downloading the latest Ela CCSS
+2014-02-27 16:40:46,465 Download complete
+2014-02-27 16:41:03,412 ###############New Run###############
+2014-02-27 16:41:03,414 Discpline is: args.discpline
+2014-02-27 16:41:03,414 Grade level is: args.grade
+2014-02-27 16:41:03,414 Removing any old CCSS files
+2014-02-27 16:41:03,415 xml-in.xml DELETED
+2014-02-27 16:41:03,415 Downloading the latest Ela CCSS
+2014-02-27 16:41:04,513 Download complete
+2014-02-27 16:41:23,253 ###############New Run###############
+2014-02-27 16:41:23,255 Discpline is: args.discpline
+2014-02-27 16:41:23,255 Grade level is: args.grade
+2014-02-27 16:41:23,255 Removing any old CCSS files
+2014-02-27 16:41:23,256 xml-in.xml DELETED
+2014-02-27 16:41:23,256 Downloading the latest Ela CCSS
+2014-02-27 16:41:24,037 Download complete
+2014-02-27 16:44:27,819 ###############New Run###############
+2014-02-27 16:44:27,821 Discpline is: args.discpline
+2014-02-27 16:44:27,821 Grade level is: args.grade
+2014-02-27 16:44:27,821 Removing any old CCSS files
+2014-02-27 16:44:27,822 xml-in.xml DELETED
+2014-02-27 16:44:27,822 Downloading the latest Ela CCSS
+2014-02-27 16:44:28,197 Download complete
+2014-02-27 16:44:55,488 ###############New Run###############
+2014-02-27 16:44:55,490 Discpline is: args.discpline
+2014-02-27 16:44:55,490 Grade level is: args.grade
+2014-02-27 16:44:55,490 Removing any old CCSS files
+2014-02-27 16:44:55,491 xml-in.xml DELETED
+2014-02-27 16:44:55,491 Downloading the latest Ela CCSS
+2014-02-27 16:44:55,914 Download complete
+2014-02-27 16:45:13,186 ###############New Run###############
+2014-02-27 16:45:13,188 Discpline is: args.discpline
+2014-02-27 16:45:13,188 Grade level is: args.grade
+2014-02-27 16:45:13,188 Removing any old CCSS files
+2014-02-27 16:45:13,189 xml-in.xml DELETED
+2014-02-27 16:45:13,189 Downloading the latest Ela CCSS
+2014-02-27 16:45:13,485 Download complete
+2014-02-27 16:45:32,401 ###############New Run###############
+2014-02-27 16:45:32,403 Discpline is: args.discpline
+2014-02-27 16:45:32,403 Grade level is: args.grade
+2014-02-27 16:45:32,403 Removing any old CCSS files
+2014-02-27 16:45:32,404 xml-in.xml DELETED
+2014-02-27 16:45:32,404 Downloading the latest Ela CCSS
+2014-02-27 16:45:32,699 Download complete
+2014-02-27 16:45:50,960 ###############New Run###############
+2014-02-27 16:45:50,961 Discpline is: args.discpline
+2014-02-27 16:45:50,962 Grade level is: args.grade
+2014-02-27 16:45:50,962 Removing any old CCSS files
+2014-02-27 16:45:50,962 xml-in.xml DELETED
+2014-02-27 16:45:50,963 Downloading the latest Ela CCSS
+2014-02-27 16:45:51,153 Download complete
+2014-02-27 16:46:03,972 ###############New Run###############
+2014-02-27 16:46:03,974 Discpline is: args.discpline
+2014-02-27 16:46:03,974 Grade level is: args.grade
+2014-02-27 16:46:03,974 Removing any old CCSS files
+2014-02-27 16:46:03,975 xml-in.xml DELETED
+2014-02-27 16:46:03,975 Downloading the latest Ela CCSS
+2014-02-27 16:46:04,387 Download complete
+2014-02-27 16:46:57,494 ###############New Run###############
+2014-02-27 16:46:57,496 Discpline is: args.discpline
+2014-02-27 16:46:57,496 Grade level is: args.grade
+2014-02-27 16:46:57,496 Removing any old CCSS files
+2014-02-27 16:46:57,497 xml-in.xml DELETED
+2014-02-27 16:46:57,497 Downloading the latest Ela CCSS
+2014-02-27 16:46:59,633 Download complete
