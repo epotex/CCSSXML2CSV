@@ -5,7 +5,11 @@ import time
 import logging
 import os
 import argparse
-from xml.dom.minidom import parseString
+#from xml.dom.minidom import parseString
+from xml.etree import ElementTree
+
+
+
 #Global Vars:
 logging.basicConfig(filename='logxml2csv.log',level=logging.DEBUG, format='%(asctime)s %(message)s') 
 downfile = "xml-in.xml"
@@ -38,16 +42,12 @@ def download(xmlurl): #Downloading the right ccss file according selection
 	xmloutput.close()
 	logging.info('Download complete')
 
-def parser(u_rfid, xml_file):
-	logging.info('Starting parser...')
-        file = open(xml_file,'r')
-        data = file.read()
-        file.close()
-        dom = parseString(data)
-        xmlTag = dom.getElementsByTagName(u_rfid)[0].toxml()
-        xmlData = xmlTag.replace('<tagName>','').replace('</tagName>','')
-        print xmlTag
-        print xmlData
+def parser(downfile,grade_level_number):
+	document = ElementTree.parse(downfile)
+	for group in document.findall( 'GradeLevels/GradeLevels'):
+    		print group.attrib['grade_level_number']
+		
+	
 
 #script:
 
@@ -63,7 +63,7 @@ else:
 if args.discpline.lower() == "ela":
         logging.info('Downloading the latest Ela CCSS')
 	download(elaurl);
-	parser(gradelevel,downfile)
+	parser(downfile,gradelevel)
 
 elif args.discpline.lower() == "math":
         logging.info('Downloading the latest Math CCSS')
