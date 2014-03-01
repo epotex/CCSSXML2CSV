@@ -1,4 +1,4 @@
 CCSSXML2CSV
 ===========
 
-Convert XML files from online source to csv
+Convert CCSS XML files from "http://www.corestandards.org/" to a csv
