@@ -56,7 +56,7 @@ def test():
      for a in edu:
         get_xpath_attrib_value(a)
         
-     #get_xpath_attrib_value(edu)ll
+     #get_xpath_attrib_value(edu)
      
 
 
