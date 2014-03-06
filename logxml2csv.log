@@ -165,3 +165,8 @@
 2014-03-01 20:45:50,691 xml-in.xml DELETED
 2014-03-01 20:45:50,691 Downloading the latest Math CCSS
 2014-03-01 20:45:50,894 Download complete
+2014-03-05 22:51:24,578 ###############New Run###############
+2014-03-05 22:51:24,604 Removing any old CCSS files
+2014-03-05 22:51:24,604 Could not found any old file to remove...
+2014-03-05 22:51:24,604 Downloading the latest Math CCSS
+2014-03-05 22:51:26,205 Download complete
