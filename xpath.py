@@ -17,6 +17,7 @@ Standard_Pack = 'CCSS'
 selectable = ''
 Discipline = 'Math'
 Grade_Level = '5'
+##
 #gradefilter  = "{'{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource': 'http://purl.org/ASN/scheme/ASNEducationLevel/" + grade
 GeneralDescription =  tree.findall('.//dcterms:description', namespaces = tree.nsmap)[0].text
 GeneralId =  tree.findall('.//asn:jurisdiction', namespaces = tree.nsmap)[0].attrib
