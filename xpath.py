@@ -17,7 +17,7 @@ Standard_Pack = 'CCSS'
 selectable = ''
 Discipline = 'Math'
 Grade_Level = '5'
-##sd
+
 #gradefilter  = "{'{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource': 'http://purl.org/ASN/scheme/ASNEducationLevel/" + grade
 GeneralDescription =  tree.findall('.//dcterms:description', namespaces = tree.nsmap)[0].text
 GeneralId =  tree.findall('.//asn:jurisdiction', namespaces = tree.nsmap)[0].attrib
@@ -32,11 +32,8 @@ IsChildOf = tree.findall('.//gemq:isChildOf',  namespaces = tree.nsmap)
 IsPartOf = tree.findall('.//dcterms:isPartOf',  namespaces = tree.nsmap)
 StatementNotation = tree.findall('.//asn:statementNotation',  namespaces = tree.nsmap)#TEXT
 
-    
-
 #for x in get_xpath_attrib_value_list(StatementNotation):
  #   print x
-
 
 #Get the Header for the CSV file
 def get_csv_header():
@@ -50,36 +47,39 @@ def get_xpath_attrib_value_dict(x):
 #Get the General entity
 def get_general_entity():
     #Xpath XML items Vars:
-    pass
-    #print Country, ';',    State, ';',    Standard_Pack, ';',    Discipline, ';',    Grade_Level, ';',    GeneralId, ';',    '', ';',    'Selectable', ';',    GeneralName, ';',    GeneralDescription
+    
+    print Country, ';',    State, ';',    Standard_Pack, ';',    Discipline, ';',    Grade_Level, ';',    GeneralId, ';',    '', ';',    'Selectable', ';',    GeneralName, ';',    GeneralDescription
 #Get the ALL entity(beside the General entity)
 def get_all_entitys():
     #Xpath XML items Vars:
     for element in tree.getchildren():
         for a in element.xpath('.//dcterms:educationLevel',  namespaces = tree.nsmap):
-            Statement = element.xpath('asn:Statement',  namespaces = tree.nsmap)
-            #EducationLevel = element.xpath('.//dcterms:educationLevel',  namespaces = tree.nsmap) #dict
-            edu =  tree.findall('.//dcterms:educationLevel', namespaces = tree.nsmap)#list of dict
-            #Subject = element.xpath('.//dcterms:subject ',  namespaces = tree.nsmap)
-            Description = element.xpath('.//dcterms:description ',  namespaces = tree.nsmap)
-            Comment = element.xpath('.//asn:comment ',  namespaces = tree.nsmap)
-            Haschild = element.xpath('.//gemq:hasChild  ',  namespaces = tree.nsmap)
-            Language = element.xpath('.//dcterms:language  ',  namespaces = tree.nsmap)
-            IsChildOf = element.xpath('.//gemq:isChildOf ',  namespaces = tree.nsmap)
-            AuthorityStatus = element.xpath('.//asn:authorityStatus ',  namespaces = tree.nsmap)
-            IndexingStatus = element.xpath('.//asn:indexingStatus ',  namespaces = tree.nsmap)
-            IsPartOf = element.xpath('.//dcterms:isPartOf ',  namespaces = tree.nsmap)
-            StatementNotation = element.xpath('.//asn:statementNotation ',  namespaces = tree.nsmap)
-            GeneralNode = element.xpath('//asn:StandardDocument', namespaces = tree.nsmap)  
+            #===================================================================
+            # Statement = element.xpath('asn:Statement',  namespaces = tree.nsmap)
+            # #EducationLevel = element.xpath('.//dcterms:educationLevel',  namespaces = tree.nsmap) #dict
+            # edu =  tree.findall('.//dcterms:educationLevel', namespaces = tree.nsmap)#list of dict
+            # #Subject = element.xpath('.//dcterms:subject ',  namespaces = tree.nsmap)
+            # Description = element.xpath('.//dcterms:description ',  namespaces = tree.nsmap)
+            # Comment = element.xpath('.//asn:comment ',  namespaces = tree.nsmap)
+            # Haschild = element.xpath('.//gemq:hasChild  ',  namespaces = tree.nsmap)
+            # Language = element.xpath('.//dcterms:language  ',  namespaces = tree.nsmap)
+            # IsChildOf = element.xpath('.//gemq:isChildOf ',  namespaces = tree.nsmap)
+            # AuthorityStatus = element.xpath('.//asn:authorityStatus ',  namespaces = tree.nsmap)
+            # IndexingStatus = element.xpath('.//asn:indexingStatus ',  namespaces = tree.nsmap)
+            # IsPartOf = element.xpath('.//dcterms:isPartOf ',  namespaces = tree.nsmap)
+            # StatementNotation = element.xpath('.//asn:statementNotation ',  namespaces = tree.nsmap)
+            # GeneralNode = element.xpath('//asn:StandardDocument', namespaces = tree.nsmap)  
+            #===================================================================
+            test = get_xpath_attrib_value_list(Subject)
+             
             if a.attrib == {'{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource': 'http://purl.org/ASN/scheme/ASNEducationLevel/8'}:
                for a in StatementNotation:
                    if  a.text is not None:
-                       yield Country, ';', State, ';', Standard_Pack, ';', get_xpath_attrib_value_list(Subject), ';', EducationLevel[0].attrib, ';', a.text, ';', IsChildOf[0].attrib, ';', selectable, ';', Description[0].text, ';', Comment
-
+                       yield  Country, ';', State, ';', Standard_Pack, ';', test, ';', EducationLevel[0].attrib, ';', a.text, ';', IsChildOf[0].attrib, ';', selectable, ';', Description[0].text, ';', Comment
 
 #Script:#            
 #get_csv_header()
 #get_general_entity()    
-    
-for a in get_all_entitys():
-    print a
+for results in get_all_entitys():
+    print results
+
