@@ -34,11 +34,5 @@ for x in all:
         pass
             
 
-print  ID.attrib, e.attrib, s   
-    
-    
-                
-     
 
-    
-    
+print  ID.attrib, e.attrib, s   

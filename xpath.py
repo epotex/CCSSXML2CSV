@@ -26,6 +26,7 @@ Comment = tree.findall('.//asn:comment',  namespaces = tree.nsmap)#TEXT
 Haschild = tree.findall('.//gemq:hasChild',  namespaces = tree.nsmap)
 IsChildOf = tree.findall('.//gemq:isChildOf',  namespaces = tree.nsmap)
 IsPartOf = tree.findall('.//dcterms:isPartOf',  namespaces = tree.nsmap)
+<<<<<<< HEAD
 StatementNotation = tree.xpath('.//asn:Statement/asn:statementNotation/text()',  namespaces = tree.nsmap)
 About = tree.xpath('.//asn:Statement/@rdf:about',  namespaces = tree.nsmap)
 Elements = tree.xpath('//asn:Statement/*', namespaces = tree.nsmap)
@@ -43,6 +44,30 @@ for x in tree:
             
 
 
+=======
+StatementNotation = tree.xpath('.//asn:statementNotation',  namespaces = tree.nsmap)#TEXT
+About = tree.findall('asn:Statement', namespaces = tree.nsmap)
+
+
+# 
+# for id in  About:
+
+#         
+#         print  value
+
+
+for id in  About:
+    for state in  id:
+        if state == "{http://purl.org/ASN/schema/core/}statementNotation":
+            print state
+        
+    # for key,value  in  id.attrib.iteritems():
+     #    for x in StatementNotation:
+      #       print  x.text, value
+         
+            
+    
+>>>>>>> d2462f71dfc88e55424d1e8a100c245f5dc54cd1
 #About = tree.findall('.//asn:Statement/rdf:about',  namespaces = tree.nsmap)
 
 #for x in get_xpath_attrib_value_list(StatementNotation):
@@ -129,9 +154,65 @@ def get_xpath_attrib_value_list(x):
 #get_parent()
 
 
+
+
+#
+
+
+id_url_dict ={}
+# def get_xpath_attrib_value_list(x):
+#     for a in x:
+#         id_url_dict[a] = a.attrib
+#         for value in dict.itervalues():
+#             yield value       
+
+#===============================================================================
+# 
+# for id in StatementNotation:
+#     print id
+#                 
+# def get_parent_id():
+#     for entity in etree.parse(file).getroot():
+#         haschild_list =[]
+#         child_id_dict = {}
+#         
+#         
+#===============================================================================
+#         for  a in get_xpath_attrib_value_list(Haschild):
+#             haschild_list.append(a, a.text)
+#             print a
+#         for  b in get_xpath_attrib_value_list(Statement):
+#             child_id_dict.append(b)
+#         for key, in haschild_dict:
+#             for z in child_id_dict:
+#                 if z == key:
+#                     yield z , value
+#     for  a in get_xpath_attrib_value_list(Haschild):
+#         try:
+#             print a
+#         except TypeError: 
+#             pass
+
+#for x in get_parent_id():
+ #   print x
+#for entity in etree.parse(file).getroot():
+ #   for b in get_xpath_attrib_value_list(IsChildOf):
+  #       if  b == a:
+   #          print "mach"
+#print About
+
+    #print  entity.attrib
+#get_parent()
+
+
 #Script:#            
+<<<<<<< HEAD
 # get_csv_header()
 # get_general_entity()    
+=======
+#get_csv_header()
+#get_general_entity()    
+>>>>>>> d2462f71dfc88e55424d1e8a100c245f5dc54cd1
 #for results in get_all_entities():
  #   print results
 
