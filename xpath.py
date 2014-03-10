@@ -12,7 +12,7 @@ State = ''
 Standard_Pack = 'CCSS'
 selectable = ''
 Discipline = 'Math'
-Grade_Level = '5'
+Grade_Level = 'Fifth'
 
 #gradefilter  = "{'{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource': 'http://purl.org/ASN/scheme/ASNEducationLevel/" + grade
 GeneralDescription =  tree.findall('.//dcterms:description', namespaces = tree.nsmap)[0].text
@@ -26,32 +26,27 @@ Comment = tree.findall('.//asn:comment',  namespaces = tree.nsmap)#TEXT
 Haschild = tree.findall('.//gemq:hasChild',  namespaces = tree.nsmap)
 IsChildOf = tree.findall('.//gemq:isChildOf',  namespaces = tree.nsmap)
 IsPartOf = tree.findall('.//dcterms:isPartOf',  namespaces = tree.nsmap)
-StatementNotation = tree.xpath('.//asn:statementNotation',  namespaces = tree.nsmap)#TEXT
-About = tree.findall('asn:Statement', namespaces = tree.nsmap)
+StatementNotation = tree.xpath('.//asn:Statement/asn:statementNotation/text()',  namespaces = tree.nsmap)
+About = tree.xpath('.//asn:Statement/@rdf:about',  namespaces = tree.nsmap)
+Elements = tree.xpath('//asn:Statement/*', namespaces = tree.nsmap)
+
+child = tree.xpath('child::node()')
+for x in child:
+    print   x.getparent()
 
 
-# 
-# for id in  About:
-
-#         
-#         print  value
-
-
-for id in  About:
-    for state in  id:
-        if state == "{http://purl.org/ASN/schema/core/}statementNotation":
-            print state
-        
-    # for key,value  in  id.attrib.iteritems():
-     #    for x in StatementNotation:
-      #       print  x.text, value
-         
-            
+for x in tree:
+    print x.xpath('child')
     
+
+        
+            
+
+
 #About = tree.findall('.//asn:Statement/rdf:about',  namespaces = tree.nsmap)
 
 #for x in get_xpath_attrib_value_list(StatementNotation):
- #   print x
+
 
 #Get the Header for the CSV file
 def get_csv_header():
@@ -79,19 +74,21 @@ def get_all_entities():
             if a.attrib == {'{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource': 'http://purl.org/ASN/scheme/ASNEducationLevel/8'}:
                for a in StatementNotation:
                    if  a.text is not None:
-                       yield  Country, ';', State, ';', Standard_Pack, ';', test, ';', EducationLevel[0].attrib, ';', a.text, ';', IsChildOf[0].attrib, ';', selectable, ';', Description[0].text, ';', Comment
+                       print [tree.xpath('*/StatementCode')[0].text, tree.xpath('*/Statement')[0].text, tree.xpath('*/description')[0].text, tree.xpath('*/GradeLevel')[0].text]
+                       #yield  Country, ';', State, ';', Standard_Pack, ';', Discipline, ';', Grade_Level, ';', a.text, ';', "", ';', selectable, ';', Description[0].text, ';', Comment
 
 
 
-#
+    
+
 
 
 id_url_dict ={}
-# def get_xpath_attrib_value_list(x):
-#     for a in x:
-#         id_url_dict[a] = a.attrib
-#         for value in dict.itervalues():
-#             yield value       
+def get_xpath_attrib_value_list(x):
+    for a in x:
+        id_url_dict[a] = a.attrib
+        for value in dict.itervalues():
+            yield value       
 
 #===============================================================================
 # 
@@ -133,8 +130,8 @@ id_url_dict ={}
 
 
 #Script:#            
-#get_csv_header()
-#get_general_entity()    
+# get_csv_header()
+# get_general_entity()    
 #for results in get_all_entities():
  #   print results
 

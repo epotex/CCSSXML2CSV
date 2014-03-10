@@ -27,7 +27,8 @@ gradelevel = args.grade
 logging.info('Discpline is: args.discpline')
 logging.info('Grade level is: args.grade')
 #Functions:
-
+discpline = "math"
+gradelevel = "5"
 #Downloading Function:
 def download(xmlurl): #Downloading the right ccss file according selection
 	xmlin = urllib2.Request(xmlurl, headers={'User-Agent: Mozilla/5.0' : "Chrome"})
@@ -63,19 +64,26 @@ if __name__ == '__main__':
 		logging.info('xml-in.xml DELETED')
 	else:
 		logging.info('Could not found any old file to remove...')
-#checking for discipline ela or math, else -> exit
-	if args.discpline.lower() == "ela":
-	        logging.info('Downloading the latest Ela CCSS')
-		download(elaurl);
-		for a in main():
-			 csv_writer()
-	elif args.discpline.lower() == "math":
-        	logging.info('Downloading the latest Math CCSS')
-	        download(mathurl);
-		for a in main():
-                         csv_writer()
-	else:
-        	logging.error('Unsupported discpline:, args.discpline')
-		print "Please choose Ela or Math as a discpline"
-		print "Couldn't set discpline"
-		exit()
+#===============================================================================
+# #checking for discipline ela or math, else -> exit
+# 	if args.discpline.lower() == "ela":
+# 		logging.info('Downloading the latest Ela CCSS')
+# 		download(elaurl)
+# 		for a in main():
+# 			csv_writer()
+# 	elif args.discpline.lower() == "math":
+# 		logging.info('Downloading the latest Math CCSS')
+# 		download(mathurl)
+# 		for a in main():
+# 			print a
+#                        #  csv_writer()
+# 	else:
+#         	logging.error('Unsupported discpline:, args.discpline')
+# 		print "Please choose Ela or Math as a discpline"
+# 		print "Couldn't set discpline"
+# 		exit()
+#===============================================================================
+download(mathurl)
+for a in main():
+	print a
+

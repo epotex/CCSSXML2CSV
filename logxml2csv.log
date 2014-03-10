@@ -170,3 +170,28 @@
 2014-03-05 22:51:24,604 Could not found any old file to remove...
 2014-03-05 22:51:24,604 Downloading the latest Math CCSS
 2014-03-05 22:51:26,205 Download complete
+2014-03-10 14:58:55,339 ###############New Run###############
+2014-03-10 14:58:55,355 Discpline is: args.discpline
+2014-03-10 14:58:55,355 Grade level is: args.grade
+2014-03-10 14:58:55,355 Removing any old CCSS files
+2014-03-10 14:58:55,355 xml-in.xml DELETED
+2014-03-10 15:00:17,917 ###############New Run###############
+2014-03-10 15:00:17,917 Discpline is: args.discpline
+2014-03-10 15:00:17,918 Grade level is: args.grade
+2014-03-10 15:00:17,918 Removing any old CCSS files
+2014-03-10 15:00:17,918 Could not found any old file to remove...
+2014-03-10 15:02:07,482 ###############New Run###############
+2014-03-10 15:02:07,483 Discpline is: args.discpline
+2014-03-10 15:02:07,483 Grade level is: args.grade
+2014-03-10 15:02:07,483 Removing any old CCSS files
+2014-03-10 15:02:07,483 Could not found any old file to remove...
+2014-03-10 15:02:49,260 ###############New Run###############
+2014-03-10 15:02:49,262 Discpline is: args.discpline
+2014-03-10 15:02:49,262 Grade level is: args.grade
+2014-03-10 15:02:49,262 Removing any old CCSS files
+2014-03-10 15:02:49,262 Could not found any old file to remove...
+2014-03-10 15:03:46,286 ###############New Run###############
+2014-03-10 15:03:46,286 Discpline is: args.discpline
+2014-03-10 15:03:46,286 Grade level is: args.grade
+2014-03-10 15:03:46,286 Removing any old CCSS files
+2014-03-10 15:03:46,288 Could not found any old file to remove...
