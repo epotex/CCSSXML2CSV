@@ -1,13 +1,9 @@
 from lxml import etree
 file = 'xml-in.xml'
+tree = etree.parse(file).getroot()
 #namespaces={'skos':'http://www.w3.org/2004/02/skos/core#','rdfs':'http://www.w3.org/2000/01/rdf-schema#','gemq':'http://purl.org/gem/qualifiers/','loc':'http://www.loc.gov/loc.terms/relators/','owl':'http://www.w3.org/2002/07/owl#','asn':'http://purl.org/ASN/schema/core/', 'cc':'http://creativecommons.org/ns#','dc':'http://purl.org/dc/elements/1.1/','dcterms':'http://purl.org/dc/terms/','foaf':'http://xmlns.com/foaf/0.1/', 'rdf':'http://www.w3.org/2000/01/rdf-schema#', 'dcterms': 'http://purl.org/dc/terms/'})
 #educationLevel = element.xpath('*[local-name()="educationLevel"]')
-tree = etree.parse(file).getroot()
-def get_xpath_attrib_value_list(x):
-    for a in x:
-        dict = a.attrib
-        for value in dict.itervalues():
-            yield value
+
 
 #Global Vars
 grade = "12'}"
@@ -30,7 +26,29 @@ Comment = tree.findall('.//asn:comment',  namespaces = tree.nsmap)#TEXT
 Haschild = tree.findall('.//gemq:hasChild',  namespaces = tree.nsmap)
 IsChildOf = tree.findall('.//gemq:isChildOf',  namespaces = tree.nsmap)
 IsPartOf = tree.findall('.//dcterms:isPartOf',  namespaces = tree.nsmap)
-StatementNotation = tree.findall('.//asn:statementNotation',  namespaces = tree.nsmap)#TEXT
+StatementNotation = tree.xpath('.//asn:statementNotation',  namespaces = tree.nsmap)#TEXT
+About = tree.findall('asn:Statement', namespaces = tree.nsmap)
+
+
+# 
+# for id in  About:
+
+#         
+#         print  value
+
+
+for id in  About:
+    for state in  id:
+        if state == "{http://purl.org/ASN/schema/core/}statementNotation":
+            print state
+        
+    # for key,value  in  id.attrib.iteritems():
+     #    for x in StatementNotation:
+      #       print  x.text, value
+         
+            
+    
+#About = tree.findall('.//asn:Statement/rdf:about',  namespaces = tree.nsmap)
 
 #for x in get_xpath_attrib_value_list(StatementNotation):
  #   print x
@@ -46,29 +64,15 @@ def get_xpath_attrib_value_dict(x):
 
 #Get the General entity
 def get_general_entity():
-    #Xpath XML items Vars:
-    
     print Country, ';',    State, ';',    Standard_Pack, ';',    Discipline, ';',    Grade_Level, ';',    GeneralId, ';',    '', ';',    'Selectable', ';',    GeneralName, ';',    GeneralDescription
+
 #Get the ALL entity(beside the General entity)
-def get_all_entitys():
+def get_all_entities():
     #Xpath XML items Vars:
     for element in tree.getchildren():
         for a in element.xpath('.//dcterms:educationLevel',  namespaces = tree.nsmap):
             #===================================================================
             # Statement = element.xpath('asn:Statement',  namespaces = tree.nsmap)
-            # #EducationLevel = element.xpath('.//dcterms:educationLevel',  namespaces = tree.nsmap) #dict
-            # edu =  tree.findall('.//dcterms:educationLevel', namespaces = tree.nsmap)#list of dict
-            # #Subject = element.xpath('.//dcterms:subject ',  namespaces = tree.nsmap)
-            # Description = element.xpath('.//dcterms:description ',  namespaces = tree.nsmap)
-            # Comment = element.xpath('.//asn:comment ',  namespaces = tree.nsmap)
-            # Haschild = element.xpath('.//gemq:hasChild  ',  namespaces = tree.nsmap)
-            # Language = element.xpath('.//dcterms:language  ',  namespaces = tree.nsmap)
-            # IsChildOf = element.xpath('.//gemq:isChildOf ',  namespaces = tree.nsmap)
-            # AuthorityStatus = element.xpath('.//asn:authorityStatus ',  namespaces = tree.nsmap)
-            # IndexingStatus = element.xpath('.//asn:indexingStatus ',  namespaces = tree.nsmap)
-            # IsPartOf = element.xpath('.//dcterms:isPartOf ',  namespaces = tree.nsmap)
-            # StatementNotation = element.xpath('.//asn:statementNotation ',  namespaces = tree.nsmap)
-            # GeneralNode = element.xpath('//asn:StandardDocument', namespaces = tree.nsmap)  
             #===================================================================
             test = get_xpath_attrib_value_list(Subject)
              
@@ -77,9 +81,60 @@ def get_all_entitys():
                    if  a.text is not None:
                        yield  Country, ';', State, ';', Standard_Pack, ';', test, ';', EducationLevel[0].attrib, ';', a.text, ';', IsChildOf[0].attrib, ';', selectable, ';', Description[0].text, ';', Comment
 
+
+
+#
+
+
+id_url_dict ={}
+# def get_xpath_attrib_value_list(x):
+#     for a in x:
+#         id_url_dict[a] = a.attrib
+#         for value in dict.itervalues():
+#             yield value       
+
+#===============================================================================
+# 
+# for id in StatementNotation:
+#     print id
+#                 
+# def get_parent_id():
+#     for entity in etree.parse(file).getroot():
+#         haschild_list =[]
+#         child_id_dict = {}
+#         
+#         
+#===============================================================================
+#         for  a in get_xpath_attrib_value_list(Haschild):
+#             haschild_list.append(a, a.text)
+#             print a
+#         for  b in get_xpath_attrib_value_list(Statement):
+#             child_id_dict.append(b)
+#         for key, in haschild_dict:
+#             for z in child_id_dict:
+#                 if z == key:
+#                     yield z , value
+#     for  a in get_xpath_attrib_value_list(Haschild):
+#         try:
+#             print a
+#         except TypeError: 
+#             pass
+
+#for x in get_parent_id():
+ #   print x
+#for entity in etree.parse(file).getroot():
+ #   for b in get_xpath_attrib_value_list(IsChildOf):
+  #       if  b == a:
+   #          print "mach"
+#print About
+
+    #print  entity.attrib
+#get_parent()
+
+
 #Script:#            
 #get_csv_header()
 #get_general_entity()    
-for results in get_all_entitys():
-    print results
+#for results in get_all_entities():
+ #   print results
 
