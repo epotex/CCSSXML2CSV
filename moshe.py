@@ -1,4 +1,5 @@
 from lxml import etree
+import csv
 
 file = 'xml-in.xml'
 tree = etree.parse(file).getroot()
@@ -37,20 +38,28 @@ def get_UrlId():
             pass
         else:
             yield item.values()
+            
+def csv_writer():
+     with open(r"out.csv", "wb") as csv_file:
+         writer = csv.writer(csv_file, delimiter =",",quoting=csv.QUOTE_MINIMAL)
+         writer.writerow([ID,level,state,x])
+
 #===============================================================================
 #Script 
 #===============================================================================
-for element in all:
-    for state in get_statement():
-        pass
-    for level in get_grade_level():
-        pass
-    for ID in get_UrlId():
-        pass
-    for x in get_description():
-        pass        
-    print ID,level,state,x
+
+for state in get_statement():
+    pass
+for level in get_grade_level():
+    pass
+for ID in get_UrlId():
+    pass
+for x in get_description():
+    pass        
+
+
+print ID,level,state,x
     
-    
+csv_writer()
 
                
