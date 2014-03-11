@@ -32,5 +32,6 @@ if __name__ == '__main__':
     doc = get_doc()
     e = select_entities(doc, "5")
     for item in e:
-        print item['children'].['literal']#,item.keys()
+        for i in  item['children']:
+            print i['asn_statementNotation'], i['id']
         
