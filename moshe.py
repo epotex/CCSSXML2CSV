@@ -4,7 +4,7 @@ import csv
 file = 'xml-in.xml'
 tree = etree.parse(file).getroot()
 all = tree.getchildren()#xpath('//asn:Statement[@*]', namespaces = tree.nsmap)
-
+#url http://s3.amazonaws.com/asnstatic/data/rdf/D10003FB.xml
 #===============================================================================
 # Finctions
 #===============================================================================
@@ -47,7 +47,6 @@ def csv_writer():
 #===============================================================================
 #Script 
 #===============================================================================
-
 for state in get_statement():
     pass
 for level in get_grade_level():
@@ -55,7 +54,8 @@ for level in get_grade_level():
 for ID in get_UrlId():
     pass
 for x in get_description():
-    pass        
+    pass
+       
 
 
 print ID,level,state,x
