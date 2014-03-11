@@ -51,7 +51,6 @@ About = tree.findall('asn:Statement', namespaces = tree.nsmap)
 
 # 
 # for id in  About:
-
 #         
 #         print  value
 

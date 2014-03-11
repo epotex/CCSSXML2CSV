@@ -1,67 +1,36 @@
+#!/usr/bin/env python
+
+import sys
 import urllib2
 import simplejson
 
 
-mathurl ="http://s3.amazonaws.com/asnstaticd2l/data/manifest/D10003FB.json"
-#Global Vars:
-#Lists:
-if __name__ == '__main__':
+URL ="https://s3.amazonaws.com/asnstaticd2l/data/manifest/D10003FB.json"
+EDU_LABEL = 'dcterms_educationLevel'
+PREF_LABEL = 'prefLabel'
 
-    req = urllib2.Request(mathurl)
+def get_doc():
+    req = urllib2.Request(URL)
     opener = urllib2.build_opener()
     data = opener.open(req)
-    json = simplejson.load(data)
-    
-   # ID = item.get('id')
-    #asn_identifier = item.get('asn_identifier')
-#     for item in json:
-#         ID = item.get('id')
-#         Subject = item.get('dcterms_subject').get('prefLabel')
-#         Grades = item.get('dcterms_educationLevel')
-#         Description = item.get('dcterms_description').get('literal')
-#         Children = item.get('children')
-#         print json[2]
-for item in json:
-    print item.get('asn_identifier')
-               
-def get_entity_grades_list(x):
-    gradelevel='10'
-    for item in x:
-        grade_levels = []
-        for grade in Grades:
-           grade_levels.append(grade['prefLabel'])
-           #print grade_levels
-    if gradelevel in grade_levels:
-        print 'Gradelevel',gradelevel, 'found!'
-    else:
-        print 'Gradelevel',gradelevel,'Not found!'    
-     
-#get_entity_grades_list(Children)    
+    return simplejson.load(data)
 
-# for child in  Children:   
-#     get_entity_grades_list(child) 
-# 
-# for item in json:
-#     print item['asn_statementLabel']
-#         print x.get('asn_statementLabel')    
+def select_entities(doc, pref_value):
+    entities = []
+    for entity in doc:
+        for i in entity[EDU_LABEL]:
+            try:
+                pref = i.get(PREF_LABEL)
+            except AttributeError:
+                continue
+            if pref == pref_value:
+                entities.append(entity)
+                break
+    return entities
+
+if __name__ == '__main__':
+    doc = get_doc()
+    e = select_entities(doc, "5")
+    for item in e:
+        print item['children'].['literal']#,item.keys()
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
