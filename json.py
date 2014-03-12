@@ -13,9 +13,9 @@ def get_doc():
     opener = urllib2.build_opener()
     data = opener.open(req)
     return simplejson.load(data)
-def comperevalue(entity,val):
-        
-        for i in entity['dcterms_educationLevel']:
+
+def comparevalue(entity,val):
+        for i in entity[EDU_LABEL]:
             try:
                 pref = i.get(PREF_LABEL)
             except AttributeError:
@@ -27,8 +27,7 @@ def comperevalue(entity,val):
 def select_entities(doc, pref_value):
     entities = []
     for entity in doc:
-        
-        if comperevalue(entity, pref_value):
+        if comparevalue(entity, pref_value):
             entities.append(entity)
     return entities
 
@@ -36,4 +35,4 @@ if __name__ == '__main__':
     doc = get_doc()
     e = select_entities(doc, gradefilter)
     for elem in e:
-        print elem['id'],elem['text']
+       print elem['id'],elem['text']
