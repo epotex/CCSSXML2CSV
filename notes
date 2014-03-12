@@ -1,0 +1,30 @@
+  
+  
+  
+  
+  for item in e:
+       for level in item[EDU_LABEL]:
+           if  level[PREF_LABEL] == '5':
+               for child in item['children']:
+                   for grade in child[EDU_LABEL]:
+                        try:
+                            pref = grade.get(PREF_LABEL)
+                        except AttributeError:
+                            continue
+                        if pref == gradefilter:
+                            print child['asn_statementNotation'], child['id'] 
+                            break
+                            
+                            
+   for level in elem[EDU_LABEL]:
+            if  level[PREF_LABEL] == '9':
+                for child in elem['children']:
+                    for grade in child[EDU_LABEL]:
+                         try:
+                             pref = grade.get(PREF_LABEL)
+                         except AttributeError:
+                             continue
+                         if pref == gradefilter:
+                             print child['asn_statementNotation'], child['id'], child['text'] 
+                             break
+                        
