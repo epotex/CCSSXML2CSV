@@ -16,8 +16,10 @@ def get_doc():
 
 def comparevalue(entity,val):
         for i in entity[EDU_LABEL]:
+            
             try:
                 pref = i.get(PREF_LABEL)
+                print pref
             except AttributeError:
                 continue
             if pref == val:
@@ -35,4 +37,12 @@ if __name__ == '__main__':
     doc = get_doc()
     e = select_entities(doc, gradefilter)
     for elem in e:
-       print elem['id'],elem['text']
+        #if comparevalue(elem,gradefilter):
+            print elem['id'],';',elem['text'],';', '#father#'
+            for child in elem['children']:
+                #if comparevalue(child,gradefilter):
+                    print child['id'],';',child['asn_statementNotation'],';','#child#',';',child['text']
+                    for grandchild in child['children']:
+                        #if comparevalue(grandchild,gradefilter):
+                            print grandchild['id'],';',grandchild['asn_statementNotation'],';','#grandchild#',';',grandchild['text']
+           

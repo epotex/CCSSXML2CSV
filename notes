@@ -27,4 +27,9 @@
                          if pref == gradefilter:
                              print child['asn_statementNotation'], child['id'], child['text'] 
                              break
-                        
+ try:
+                pref = i.get(PREF_LABEL)
+                #rint pref
+            except AttributeError:
+                continue
+                
