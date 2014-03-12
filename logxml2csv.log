@@ -195,3 +195,8 @@
 2014-03-10 15:03:46,286 Grade level is: args.grade
 2014-03-10 15:03:46,286 Removing any old CCSS files
 2014-03-10 15:03:46,288 Could not found any old file to remove...
+2014-03-11 20:01:12,920 ###############New Run###############
+2014-03-11 20:01:12,921 Removing any old CCSS files
+2014-03-11 20:01:12,923 xml-in.xml DELETED
+2014-03-11 20:01:12,923 Downloading the latest Math CCSS
+2014-03-11 20:01:14,326 Download complete
