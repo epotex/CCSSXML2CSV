@@ -37,11 +37,11 @@ if __name__ == '__main__':
     for elem in e:
         print 'out', elem.values()
         #if comparevalue(elem,gradefilter):    
-            print elem['dcterms_description'],elem['id'],';',elem['text'],';', '#father#'
-            for child in elem['children']:
-                #if comparevalue(child,gradefilter):
-                    print child['id'],';',child['asn_statementNotation'],';','#child#',';',child['text']
-                    for grandchild in child['children']:
-                        #if comparevalue(grandchild,gradefilter):
-                            print grandchild['id'],';',grandchild['asn_statementNotation'],';','#grandchild#',';',grandchild['text']
-            
+        print elem['dcterms_description'],elem['id'],';',elem['text'],';', '#father#'
+        for child in elem['children']:
+            #if comparevalue(child,gradefilter):
+                print child['id'],';',child['asn_statementNotation'],';','#child#',';',child['text']
+                for grandchild in child['children']:
+                    #if comparevalue(grandchild,gradefilter):
+                        print grandchild['id'],';',grandchild['asn_statementNotation'],';','#grandchild#',';',grandchild['text']
+        
