@@ -14,6 +14,19 @@ args = parser.parse_args()
 discpline = "ela"
 #gradefilter = args.grade
 gradefilter = "6"
+
+#print vars
+Country='USA'
+State=''
+Standard_Package='CCSS'
+Discipline = discpline
+Grade_Level = 'SIXES'
+
+Parent_Id =''
+Selectable = ''
+Name = ''
+Description =''
+
 def get_doc(URL):
     req = urllib2.Request(URL)
     opener = urllib2.build_opener()
@@ -40,41 +53,87 @@ def select_entities(doc, pref_value):
             entities.append(entity)
     return entities
 
-
 def CCSS_Math():
+    #print headr
+    print 'Country', ';',   'State', ';',   'Standard Package',  ';',  'Discipline', ';',   'Grade Level', ';',   'Ped Id',  ';',  'Parent Id',   ';', 'Selectable',   ';', 'Name',   ';', 'Description'
     for elem in e:
         #if comparevalue(elem,gradefilter):    
-        print elem['id'],';',elem['text'],';', '#father#'
+        #print elem['id'],';',,';', ''
+        print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';', general_id(), ';', "   " ';','FALSE',';', elem['text'],';'," "
         for child in elem['children']:
             #if comparevalue(child,gradefilter):
-                print child['id'],';',child['asn_statementNotation'],';','#child#',';',child['text']
+                print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';', child['asn_statementNotation'].strip(),';', "   ", ';','FALSE',';', child['text'],';',' '
                 for grandchild in child['children']:
                     #if comparevalue(grandchild,gradefilter):
-                        print grandchild['id'],';',grandchild['asn_statementNotation'],';','#grandchild#',';',grandchild['text']
+                         print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';',grandchild['asn_statementNotation'].strip(), ';',child['asn_statementNotation'].strip(), ';','TRUE',';', Name,';',grandchild['text']
 
+
+
+def CCSS_Math_parent_notation():
+    
+    for elem in e:
+        print elem['children']['asn_statementNotation']
+          
+
+            
 def CCSS_ELA():
-    for elem in e:
-        #if comparevalue(elem,gradefilter):    
-        print elem['id'],';',elem['text'],';', '#father#'
+      print 'Country', ';',   'State', ';',   'Standard Package',  ';',  'Discipline', ';',   'Grade Level', ';',   'Ped Id',  ';',  'Parent Id',   ';', 'Selectable',   ';', 'Name',   ';', 'Description'
+      for elem in e:
+        #print header
+        #if comparevalue(elem,gradefilter):
+        if elem['dcterms_description']['literal']:    
+            print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';', general_id(), ';', elem['dcterms_description']['literal'], ';','FALSE',';', elem['text'],';'," "
+        else:
+            print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';', general_id(), ';', " ", ';','FALSE',';', elem['text'],';'," "
         for child in elem['children']:
             #if comparevalue(child,gradefilter):
-                print child['id'],';',';','#child#',';',child['text']
+                print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';', " ",';', "   ", ';','FALSE',';', child['text'],';',' '
                 for grandchild in child['children']:
                     #if comparevalue(grandchild,gradefilter):
-                        print grandchild['id'],';',grandchild['asn_statementNotation'],';','#grandchild#',';',grandchild['text']
+                    print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';',grandchild['asn_statementNotation'].strip(), ';', " ", ';','TRUE',';', Name,';',grandchild['text']
+                   
+def general_id():
+    
+    print 'Grade'+gradefilter
 
-
-
+def grade_name():
+    
+    if gradefilter =='1':
+        print 'FIRST'
+    elif gradefilter =='2':
+        print 'SECOND'
+    elif gradefilter =='3':
+        print 'THIRD'
+    elif gradefilter =='4':
+        print 'FOURTH'
+    elif gradefilter =='5':
+        print 'FIFTH'
+    elif gradefilter =='6':
+        print 'SIXTH'
+    elif gradefilter =='7':
+        print 'SEVENTH'
+    elif gradefilter =='8':
+        print 'EIGHTH'
+    elif gradefilter =='9':
+        print 'NINTH'
+    elif gradefilter =='10':
+        print 'TENTH'
+    elif gradefilter =='11':
+        print 'ELEVENTH'
+    elif gradefilter =='12':
+        print 'TWELFTH'
+    else:
+        print 'KINDERGARTEN'
     
 if __name__ == '__main__':
     
-    if args.discpline.lower() =="ela":
+    if discpline.lower() =="ela":
         doc = get_doc(ELAURL)
         e = select_entities(doc, gradefilter)
         CCSS_ELA()
-    
-    elif args.discpline.lower() == "math":
+
+    elif discpline.lower() == "math":
         doc = get_doc(MATHURL)
         e = select_entities(doc, gradefilter)
-        CCSS_Math()
-    
+        #CCSS_Math()
+        CCSS_Math_parent_notation()    
