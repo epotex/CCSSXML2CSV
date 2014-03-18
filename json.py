@@ -6,19 +6,17 @@ import csv
 import re
 ##############
 
-
-
-
 MATHURL ="https://s3.amazonaws.com/asnstaticd2l/data/manifest/D10003FB.json"
 ELAURL="https://s3.amazonaws.com/asnstaticd2l/data/manifest/D10003FC.json"#ELA
-parser = argparse.ArgumentParser()
-parser.add_argument("-d", "--discpline", help="Choose your discpline (Ela or Math)")
-parser.add_argument("-g", "--grade", help="Choose your grade level")
-args = parser.parse_args()
-#discpline = args.discpline 
+
+#parser = argparse.ArgumentParser()
+#parser.add_argument("-d", "--discpline", help="Choose your discpline (Ela or Math)")
+#parser.add_argument("-g", "--grade", help="Choose your grade level")
+#args = parser.parse_args()
+#discpline = args.discpline
 discpline = "ela"
 #gradefilter = args.grade
-gradefilter = "6"
+#gradefilter = "6"
 
 
 EDU_LABEL = 'dcterms_educationLevel'
@@ -36,6 +34,8 @@ Description =''
 ################
 #Functions:
 
+entities = []
+
 def get_doc(URL):
     req = urllib2.Request(URL)
     opener = urllib2.build_opener()
@@ -43,41 +43,36 @@ def get_doc(URL):
     return simplejson.load(data)
 
 
-def comparevalue(entity,val):
-        
-        for i in entity[EDU_LABEL]:
-            #===================================================================
-            # x =  i['prefLabel']
-            # #print x
-            # if x == val:
-            #     return True
-            # return False
-            #===================================================================
-            try:
-                pref = i['prefLabel']#i.get(PREF_LABEL)
-            except AttributeError:
-                continue
-            if pref == val:
-                return True
-            return False
-             
+def comparevalue(entity, val):
+    for i in entity[EDU_LABEL]:
+        try:
+            pref = i['prefLabel']
+        except (KeyError, TypeError):
+            continue
+        if pref == val:
+            return True
+    return False
+
+
 def select_entities(doc, pref_value):
-    entities = []
     for entity in doc:
+        try:
+            select_entities(entity['children'], pref_value)
+        except KeyError:
+            pass
         if comparevalue(entity, pref_value):
             entities.append(entity)
-    return entities
 
 def get_asn_id(urlid):
     if urlid:
         asnid = re.findall("([^\/]+)$", str(urlid))
         return asnid
-         
+
 def CCSS_Math():
     #print headr
     print 'Country', ';',   'State', ';',   'Standard Package',  ';',  'Discipline', ';',   'Grade Level', ';',   'Ped Id',  ';',  'Parent Id',   ';', 'Selectable',   ';', 'Name',   ';', 'Description'
     for elem in e:
-        #if comparevalue(elem,gradefilter):    
+        #if comparevalue(elem,gradefilter):
         #print elem['id'],';',,';', ''
         print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';', general_id(), ';', "   " ';','FALSE',';', elem['text'],';'," "
         for child in elem['children']:
@@ -88,14 +83,14 @@ def CCSS_Math():
                          print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';',grandchild['asn_statementNotation'].strip(), ';',child['asn_statementNotation'].strip(), ';','TRUE',';', Name,';',grandchild['text']
 
 #===============================================================================
-# 
-#         #old    
+#
+#         #old
 # def CCSS_ELA():
 #       print 'Country', ';',   'State', ';',   'Standard Package',  ';',  'Discipline', ';',   'Grade Level', ';',   'Ped Id',  ';',  'Parent Id',   ';', 'Selectable',   ';', 'Name',   ';', 'Description'
 #       for elem in e:
 #         #print header
 #         #if comparevalue(elem,gradefilter):
-#         if elem['dcterms_description']['literal']:    
+#         if elem['dcterms_description']['literal']:
 #             print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';', general_id(), ';', elem['dcterms_description']['literal'], ';','FALSE',';', elem['text'],';'," "
 #         else:
 #             print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';', general_id(), ';', " ", ';','FALSE',';', elem['text'],';'," "
@@ -117,66 +112,49 @@ def CCSS_ELA():
                 csv_output( Country, State, Standard_Package, Discipline, grade_name(), get_asn_id(child['id']), get_asn_id(elem['id']), 'FALSE', child['text'],None)
                 for grandchild in child['children']:
                     #if comparevalue(grandchild,gradefilter):
-                    csv_output( Country, State, Standard_Package, Discipline, grade_name(),get_asn_id(grandchild['id']),  get_asn_id(child['id']), 'TRUE', grandchild['asn_statementNotation'],grandchild['text'])
+                    csv_output(Country,
+                               State,
+                               Standard_Package,
+                               Discipline,
+                               grade_name(),
+                               get_asn_id(grandchild['id']),
+                               get_asn_id(child['id']),
+                               'TRUE')#,
+                               #grandchild['asn_statementNotation'],
+                               #grandchild['text'])
 
 
-                   
 def general_id():
-    
     return 'Grade'+gradefilter
 
-def grade_name():
-    
-    if gradefilter =='1':
-        return 'FIRST'
-    elif gradefilter =='2':
-        return 'SECOND'
-    elif gradefilter =='3':
-        return 'THIRD'
-    elif gradefilter =='4':
-        return 'FOURTH'
-    elif gradefilter =='5':
-        return 'FIFTH'
-    elif gradefilter =='6':
-        return 'SIXTH'
-    elif gradefilter =='7':
-        return 'SEVENTH'
-    elif gradefilter =='8':
-        return 'EIGHTH'
-    elif gradefilter =='9':
-        return 'NINTH'
-    elif gradefilter =='10':
-        return 'TENTH'
-    elif gradefilter =='11':
-        return 'ELEVENTH'
-    elif gradefilter =='12':
-        return 'TWELFTH'
-    else:
-        return 'KINDERGARTEN'
-def csv_output(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10):
+
+def csv_output(*args):
     filename = general_id() + '_' + discpline.upper() + '.'+'csv'
     with open(filename, 'a') as csvfile:
-        writer = csv.writer(csvfile, delimiter=',',quotechar='"', lineterminator='\n', quoting=csv.QUOTE_ALL)
-        writer.writerow([x1,x2,x3,x4,x5,x6,x7,x8,x9,x10])
-        
+        writer = csv.writer(csvfile, delimiter=',', quotechar='"', lineterminator='\n', quoting=csv.QUOTE_ALL)
+        writer.writerow(args)
+
     csvfile.close()
+
 if __name__ == '__main__':
-    
-    if discpline.lower() =="ela":
-        doc = get_doc(ELAURL)
-        e = select_entities(doc, gradefilter)
-        CCSS_ELA()
-    elif discpline.lower() == "math":
-        doc = get_doc(ELAURL)
-        e = select_entities(doc, gradefilter)
-        CCSS_Math()
+    NUM2NAME = {'1': 'FIRST',
+                '2': 'SECOND',
+                '3': 'THIRD',
+                '6': 'SIXTH',
+                'K': 'KINDERGARTEN'}
+    gradefilter = NUM2NAME.get(sys.argv[1], '6')
+
+    doc = get_doc(ELAURL)
+    select_entities(doc, sys.argv[1])
+    print len(entities)
+
+    #    if discpline.lower() =="ela":
+#        doc = get_doc(ELAURL)
+#        e = select_entities(doc, gradefilter)
+#        CCSS_ELA()
+#    elif discpline.lower() == "math":
+#        doc = get_doc(MATHURL)
+#        e = select_entities(doc, gradefilter)
+#        CCSS_Math()
 #===============================================================================
-# 
 # #check that all group levels are coming in
-#     doc = get_doc(ELAURL)
-#     e = select_entities(doc, gradefilter)
-#     for entity in doc:
-#         for gl in entity['dcterms_educationLevel']:
-#             print gl['prefLabel']
-#         
-#===============================================================================
