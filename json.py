@@ -107,17 +107,17 @@ def CCSS_Math():
 #                     print Country,';', State,';', Standard_Package,';', Discipline,';', Grade_Level,';',grandchild['asn_statementNotation'].strip(), ';', " ", ';','TRUE',';', Name,';',grandchild['text']
 #===============================================================================
 def CCSS_ELA():
-      print 'Country', ';',   'State', ';',   'Standard Package',  ';',  'Discipline', ';',   'Grade Level', ';',   'Ped Id',  ';',  'Parent Id',   ';', 'Selectable',   ';', 'Name',   ';', 'Description'
+      csv_output('Country', 'State', 'Standard Package', 'Discipline', 'Grade Level', 'Ped Id', 'Parent Id', 'Selectable', 'Name', 'Description')
       for elem in e:
         #print header
         #if comparevalue(elem,gradefilter):
-        print Country,';', State,';', Standard_Package,';', Discipline,';', grade_name(),';', get_asn_id(elem['id']), ';', "CCSS", ';','FALSE',';', elem['text'],';'," "
+        csv_output(Country, State, Standard_Package, Discipline, grade_name(), get_asn_id(elem['id']),  "CCSS", 'FALSE', elem['text'],None)
         for child in elem['children']:
             #if comparevalue(child,gradefilter):
-                print Country,';', State,';', Standard_Package,';', Discipline,';', grade_name(),';', get_asn_id(child['id']),';', get_asn_id(elem['id']), ';','FALSE',';', child['text'],';',' '
+                csv_output( Country, State, Standard_Package, Discipline, grade_name(), get_asn_id(child['id']), get_asn_id(elem['id']), 'FALSE', child['text'],None)
                 for grandchild in child['children']:
                     #if comparevalue(grandchild,gradefilter):
-                    print Country,';', State,';', Standard_Package,';', Discipline,';', grade_name(),';',get_asn_id(grandchild['id']), ';', get_asn_id(child['id']), ';','TRUE',';', grandchild['asn_statementNotation'],';',grandchild['text']
+                    csv_output( Country, State, Standard_Package, Discipline, grade_name(),get_asn_id(grandchild['id']),  get_asn_id(child['id']), 'TRUE', grandchild['asn_statementNotation'],grandchild['text'])
 
 
                    
@@ -153,22 +153,30 @@ def grade_name():
         return 'TWELFTH'
     else:
         return 'KINDERGARTEN'
-    
+def csv_output(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10):
+    filename = general_id() + '_' + discpline.upper() + '.'+'csv'
+    with open(filename, 'a') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',',quotechar='"', lineterminator='\n', quoting=csv.QUOTE_ALL)
+        writer.writerow([x1,x2,x3,x4,x5,x6,x7,x8,x9,x10])
+        
+    csvfile.close()
 if __name__ == '__main__':
     
     if discpline.lower() =="ela":
         doc = get_doc(ELAURL)
         e = select_entities(doc, gradefilter)
-        #CCSS_ELA()
+        CCSS_ELA()
     elif discpline.lower() == "math":
         doc = get_doc(ELAURL)
         e = select_entities(doc, gradefilter)
-        #CCSS_Math()
-
-#check that all group levels are coming in
-    doc = get_doc(ELAURL)
-    e = select_entities(doc, gradefilter)
-    for entity in doc:
-        for gl in entity['dcterms_educationLevel']:
-            print gl['prefLabel']
-        
+        CCSS_Math()
+#===============================================================================
+# 
+# #check that all group levels are coming in
+#     doc = get_doc(ELAURL)
+#     e = select_entities(doc, gradefilter)
+#     for entity in doc:
+#         for gl in entity['dcterms_educationLevel']:
+#             print gl['prefLabel']
+#         
+#===============================================================================
