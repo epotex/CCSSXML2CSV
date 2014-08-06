@@ -519,7 +519,6 @@ def NGSS_SCIENCE():
             )
 
     for father in e:
- 
         csv_output(
                    Country,
                    State,
@@ -530,9 +529,8 @@ def NGSS_SCIENCE():
                    Standard_Package,
                    'FALSE',
                    father['text'].encode( "utf-8" )
-                   )        
+                   )
         for child in father['children']:
-        #Child
             sci_notetion(child,father)
             csv_output(
                 Country,
@@ -544,45 +542,46 @@ def NGSS_SCIENCE():
                 'FALSE',
                 child['text'].encode( "utf-8" )
                 )
-    #===========================================================================
-    #         try:
-    #             for grandchild in child['children']:
-    #                cnote = str(child['asn_listID'].strip().strip("()"))
-    #                gnote =  str(grandchild['asn_listID'].strip().strip("()"))
-    #                StatementNotation =  cnote +"."+ gnote
-    #                csv_output(
-    #                     Country,
-    #                     State,
-    #                     Standard_Package,
-    #                     discipline_name.upper().strip(),
-    #                     grade_name,get_asn_id(grandchild['id']),
-    #                     get_asn_id(child['id']),
-    #                     'TRUE',
-    #                     StatementNotation,
-    #                     grandchild['text'].encode( "utf-8" )
-    #                     )
-    #         except KeyError:
-    #             continue                
-    #             try:
-    #                 for grandgrand in grandchild['children']:
-    #                     csv_output(
-    #                         Country,
-    #                         State,
-    #                         Standard_Package,
-    #                         discipline_name.upper(),
-    #                         grade_name,
-    #                         get_asn_id(grandgrand['id']),
-    #                         get_asn_id(grandchild['id']),
-    #                         'TRUE', 
-    #                         grandgrand['text'].encode( "utf-8" )
-    #                         )
-    #             except KeyError:
-    #                 continue
-    #           
-    #         except KeyError:
-    #             continue
-    # logging.info('Json parding ended')
-    #===========================================================================
+            try:
+                for grandchild in child['children']:
+                   #print child['asn_listID']
+                   #cnote = str(child['asn_listID'].strip().strip("()"))
+                   #gnote =  str(grandchild['asn_listID'].strip().strip("()"))
+                   #StatementNotation =  cnote +"."+ gnote
+                   csv_output(
+                        Country,
+                        State,
+                        Standard_Package,
+                        discipline_name.upper().strip(),
+                        grade_name,get_asn_id(grandchild['id']),
+                        get_asn_id(child['id']),
+                        'TRUE',
+                        ' ',
+                       # child['asn_listID'],
+                        #StatementNotation,
+                        grandchild['text'].encode( "utf-8" )
+                        )
+            except KeyError:
+                continue                
+                try:
+                    for grandgrand in grandchild['children']:
+                        csv_output(
+                            Country,
+                            State,
+                            Standard_Package,
+                            discipline_name.upper(),
+                            grade_name,
+                            get_asn_id(grandgrand['id']),
+                            get_asn_id(grandchild['id']),
+                            'TRUE', 
+                            grandgrand['text'].encode( "utf-8" )
+                            )
+                except KeyError:
+                    continue
+               
+            except KeyError:
+                continue
+    logging.info('Json parding ended')
 
 
 if __name__ == '__main__':
