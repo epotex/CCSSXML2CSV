@@ -21,7 +21,7 @@ args = parser.parse_args()
 #Discipline = args.Discipline """CMD Vars""" 
 Discipline = "science"
 #gradefilter = args.grade """CMD Vars"""
-gradefilter = "6-8"
+gradefilter = "8"
 EDU_LABEL = 'dcterms_educationLevel'
 PREF_LABEL = 'prefLabel'
 """Number to name dict"""
@@ -37,8 +37,8 @@ NUM2NAME = {'k': 'KINDERGARTEN',
             '9': 'NINTH',
             '10': 'TENTH',
             '11': 'ELEVENTH',
-            '12': 'TWELFTH',
-            '6-8':'SIXTH-EIGHTH'}
+            '12': 'TWELFTH'}#,
+            #'6-8':'SIXTH-EIGHTH'}
 
 """Descipline to packege"""
 Package = {'ela':'CCSS',
@@ -80,8 +80,7 @@ urls = {'math' :'https://s3.amazonaws.com/asnstaticd2l/data/manifest/D10003FB.js
         'ela':'https://s3.amazonaws.com/asnstaticd2l/data/manifest/D10003FC.json',
         'txela':'https://s3.amazonaws.com/asnstaticd2l/data/manifest/D100036C.json',
         'txmath':'https://s3.amazonaws.com/asnstaticd2l/data/manifest/D2486388.json',
-        'science':'https://asn.jesandco.org/resources/D2454348_manifest.json'
-        }
+        'science':'https://asn.jesandco.org/resources/D2454348_manifest.json'}
 try:
     URL = urls[Discipline.lower()]
     URL = urls[Discipline.lower()]
@@ -130,12 +129,12 @@ def general_id():
 """Set file name"""
 filename = general_id() + '_' + Discipline.upper() + '.'+'csv'
 
-"""Download json """
+"""Get json """
 def get_doc(URL):
     req = urllib2.Request(URL)
     opener = urllib2.build_opener()
     data = opener.open(req)
-    logging.info('Download complete')
+    logging.info('Read complete')
     return simplejson.load(data)
 
 """Csv writer """
@@ -180,7 +179,14 @@ def tx_notation(child,father):
     for note in father['asn_listID'].strip():
         for childnote in child['asn_listID'].strip():
             return noteid[0], cnoteid[0] 
-
+def sci_notetion(child,father):
+    try:
+        for element in father:
+            print father['asn_statementNotation']
+            for child_element in child['asn_statementNotation']:
+                return child_element 
+    except KeyError:
+        pass
 """CCSS ELA Parsing"""
 
 def CCSS_ELA():
@@ -411,89 +417,8 @@ def TX_ELA():
             except KeyError:
                 continue
     logging.info('Json parding ended')
-    
-"""TEKS MATH Parsing"""
 
-def NGSS_SCIENCE():
-    logging.info('Json parding started')
-    #Headr
-    csv_output(
-            Country,
-            State,
-            Standard_Package,
-            discipline_name.strip().upper(),
-            grade_name.strip(),
-            Standard_Package,
-            None,
-            'FALSE',
-            name,
-            None
-            )
-    for father in e:
-        csv_output(
-                   Country,
-                   State,
-                   Standard_Package,
-                   discipline_name.upper().strip(),
-                   grade_name,
-                   get_asn_id(father['id']),
-                   Standard_Package,
-                   'FALSE',
-                   father['text'].encode( "utf-8" )
-                   )        
-        for child in father['children']:
-        #Child
-            csv_output(
-                Country,
-                State,
-                Standard_Package,
-                discipline_name.upper().strip(),
-                grade_name,get_asn_id(child['id']),
-                get_asn_id(father['id']),
-                'FALSE',
-                child['text'].encode( "utf-8" )
-                )
-            try:
-                for grandchild in child['children']:
-                   cnote = str(child['asn_listID'].strip().strip("()"))
-                   gnote =  str(grandchild['asn_listID'].strip().strip("()"))
-                   StatementNotation =  cnote +"."+ gnote
-                   csv_output(
-                        Country,
-                        State,
-                        Standard_Package,
-                        discipline_name.upper().strip(),
-                        grade_name,get_asn_id(grandchild['id']),
-                        get_asn_id(child['id']),
-                        'TRUE',
-                        StatementNotation,
-                        grandchild['text'].encode( "utf-8" )
-                        )
-            except KeyError:
-                continue                
-                try:
-                    for grandgrand in grandchild['children']:
-                        csv_output(
-                            Country,
-                            State,
-                            Standard_Package,
-                            discipline_name.upper(),
-                            grade_name,
-                            get_asn_id(grandgrand['id']),
-                            get_asn_id(grandchild['id']),
-                            'TRUE', 
-                            grandgrand['text'].encode( "utf-8" )
-                            )
-                except KeyError:
-                    continue
-             
-            except KeyError:
-                continue
-    logging.info('Json parding ended')
-
-
-
-
+"""TEKS MATH Parsing"""    
 
 def TX_MATH():
     logging.info('Json parding started')
@@ -574,6 +499,92 @@ def TX_MATH():
                 continue
     logging.info('Json parding ended')
 
+
+"""TEKS SCIENCE Parsing"""
+
+def NGSS_SCIENCE():
+    logging.info('Json parding started')
+    #Headr
+    csv_output(
+            Country,
+            State,
+            Standard_Package,
+            discipline_name.strip().upper(),
+            grade_name.strip(),
+            Standard_Package,
+            None,
+            'FALSE',
+            name,
+            None
+            )
+
+    for father in e:
+ 
+        csv_output(
+                   Country,
+                   State,
+                   Standard_Package,
+                   discipline_name.upper().strip(),
+                   grade_name,
+                   get_asn_id(father['id']),
+                   Standard_Package,
+                   'FALSE',
+                   father['text'].encode( "utf-8" )
+                   )        
+        for child in father['children']:
+        #Child
+            sci_notetion(child,father)
+            csv_output(
+                Country,
+                State,
+                Standard_Package,
+                discipline_name.upper().strip(),
+                grade_name,get_asn_id(child['id']),
+                get_asn_id(father['id']),
+                'FALSE',
+                child['text'].encode( "utf-8" )
+                )
+    #===========================================================================
+    #         try:
+    #             for grandchild in child['children']:
+    #                cnote = str(child['asn_listID'].strip().strip("()"))
+    #                gnote =  str(grandchild['asn_listID'].strip().strip("()"))
+    #                StatementNotation =  cnote +"."+ gnote
+    #                csv_output(
+    #                     Country,
+    #                     State,
+    #                     Standard_Package,
+    #                     discipline_name.upper().strip(),
+    #                     grade_name,get_asn_id(grandchild['id']),
+    #                     get_asn_id(child['id']),
+    #                     'TRUE',
+    #                     StatementNotation,
+    #                     grandchild['text'].encode( "utf-8" )
+    #                     )
+    #         except KeyError:
+    #             continue                
+    #             try:
+    #                 for grandgrand in grandchild['children']:
+    #                     csv_output(
+    #                         Country,
+    #                         State,
+    #                         Standard_Package,
+    #                         discipline_name.upper(),
+    #                         grade_name,
+    #                         get_asn_id(grandgrand['id']),
+    #                         get_asn_id(grandchild['id']),
+    #                         'TRUE', 
+    #                         grandgrand['text'].encode( "utf-8" )
+    #                         )
+    #             except KeyError:
+    #                 continue
+    #           
+    #         except KeyError:
+    #             continue
+    # logging.info('Json parding ended')
+    #===========================================================================
+
+
 if __name__ == '__main__':
     
     """Removing old files"""
@@ -586,35 +597,35 @@ if __name__ == '__main__':
         
     """Main ARG selector"""     
     if Discipline.lower() =="ela":
-        logging.info('CCSS ELA choosed... Downloading The CCSS ELA json')
+        logging.info('CCSS ELA chosed... Getting the CCSS ELA json')
         logging.info('Parsing for %s grade', gradefilter )
         doc = get_doc(URL)
         e = select_entities(doc, gradefilter)
         CCSS_ELA()
         logging.info('DONE! %s has been created', filename)
     elif Discipline.lower() == "math":
-        logging.info('CCSS MATH choosed... Downloading The CCSS MATH json')
+        logging.info('CCSS MATH chosed... Getting the CCSS MATH json')
         logging.info('Parsing for %s grade', gradefilter )
         doc = get_doc(URL)
         e = select_entities(doc, gradefilter)
         CCSS_Math()
         logging.info('DONE! %s has been created', filename)
     elif Discipline.lower() == "txela":
-        logging.info('TEKS ELA choosed... Downloading The TEKS ELA json')
+        logging.info('TEKS ELA chosed... Getting the TEKS ELA json')
         logging.info('Parsing for %s grade', gradefilter )
         doc = get_doc(URL)
         e = select_entities(doc, gradefilter)
         TX_ELA()
         logging.info('DONE! %s has been created', filename)
     elif Discipline.lower() == "txmath":
-        logging.info('TEKS MATH choosed... Downloading The TEKS MATH json')
+        logging.info('TEKS MATH chosed... Getting the TEKS MATH json')
         logging.info('Parsing for %s grade', gradefilter )
         doc = get_doc(URL)
         e = select_entities(doc, gradefilter)
         TX_MATH()
         logging.info('DONE! %s has been created', filename)
     elif Discipline.lower() == "science":
-        logging.info('NGSS science choosed... Downloading The NGSS science json')
+        logging.info('NGSS science chosed... Getting the NGSS science json')
         logging.info('Parsing for %s grade', gradefilter )
         doc = get_doc(URL)
         e = select_entities(doc, gradefilter)
