@@ -179,14 +179,15 @@ def tx_notation(child,father):
     for note in father['asn_listID'].strip():
         for childnote in child['asn_listID'].strip():
             return noteid[0], cnoteid[0] 
-def sci_notetion(child,father):
+def sci_notetion(item):
     try:
-        for element in father:
-            print father['asn_statementNotation']
-            for child_element in child['asn_statementNotation']:
-                return child_element 
+        return  item['asn_statementNotation']
     except KeyError:
-        pass
+        pass   
+    
+    
+    
+    
 """CCSS ELA Parsing"""
 
 def CCSS_ELA():
@@ -519,26 +520,31 @@ def NGSS_SCIENCE():
             )
 
     for father in e:
+               
         csv_output(
                    Country,
                    State,
                    Standard_Package,
                    discipline_name.upper().strip(),
                    grade_name,
-                   get_asn_id(father['id']),
+                   #get_asn_id(father['id']),
+                   sci_notetion(father),
                    Standard_Package,
                    'FALSE',
                    father['text'].encode( "utf-8" )
                    )
         for child in father['children']:
-            sci_notetion(child,father)
+            
             csv_output(
                 Country,
                 State,
                 Standard_Package,
                 discipline_name.upper().strip(),
-                grade_name,get_asn_id(child['id']),
-                get_asn_id(father['id']),
+                grade_name,
+                #get_asn_id(child['id']),
+                sci_notetion(child),
+                #get_asn_id(father['id']),
+                sci_notetion(father),
                 'FALSE',
                 child['text'].encode( "utf-8" )
                 )
@@ -553,8 +559,11 @@ def NGSS_SCIENCE():
                         State,
                         Standard_Package,
                         discipline_name.upper().strip(),
-                        grade_name,get_asn_id(grandchild['id']),
-                        get_asn_id(child['id']),
+                        grade_name,
+                        #get_asn_id(grandchild['id']),
+                        sci_notetion(grandchild),
+                        #get_asn_id(child['id']),
+                        sci_notetion(child),
                         'TRUE',
                         ' ',
                        # child['asn_listID'],
@@ -562,6 +571,7 @@ def NGSS_SCIENCE():
                         grandchild['text'].encode( "utf-8" )
                         )
             except KeyError:
+                
                 continue                
                 try:
                     for grandgrand in grandchild['children']:
