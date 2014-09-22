@@ -182,11 +182,9 @@ def tx_notation(child,father):
         
 def general_notetion(item):
     try:
-        return  item['asn_statementNotation']
+        return  item['asn_statementNotation'].strip()
     except KeyError:
-        print "faild!"
         pass   
-    
     
     
     
@@ -256,20 +254,6 @@ def CCSS_ELA():
                          except KeyError:
                              continue
                       
-                             #==================================================
-                             # csv_output(
-                             #    Country,
-                             #    State,
-                             #    Standard_Package,
-                             #    discipline_name.upper(),
-                             #    grade_name,
-                             #    get_asn_id(grandchild['id']),
-                             #    get_asn_id(child['id']),
-                             #    'TRUE', 
-                             #    grandchild['text'].encode( "utf-8" )
-                             #    )
-                             #==================================================
-          
     logging.info('Json parding ended')
 
 """CCSS MATH Parsing"""
@@ -287,7 +271,7 @@ def CCSS_Math():
            'FALSE',
            name,
            None
-           )   
+           )  
 
     for father in e:
         for age in father[EDU_LABEL]:
@@ -297,19 +281,19 @@ def CCSS_Math():
                            Standard_Package,
                            discipline_name.upper().strip(),
                            grade_name,
-                           get_asn_id(father['id']),
+                           general_notetion(father),
                            Standard_Package,
                            'FALSE',
                            father['text'].encode( "utf-8" )
                            )
                 for children in father['children']:
-                #Child
                     csv_output(Country.strip(),
                         State.strip(),
                         Standard_Package.strip(),
                         discipline_name.upper().strip(),
-                        grade_name,get_asn_id(children['id']),
-                        get_asn_id(father['id']),
+                        grade_name,
+                        general_notetion(children),
+                        general_notetion(father),
                         'FALSE',
                         children['text'].encode( "utf-8" )                        
                         )
@@ -319,10 +303,11 @@ def CCSS_Math():
                                 State.strip(),
                                 Standard_Package.strip(),
                                 discipline_name.upper().strip(),
-                                grade_name,get_asn_id(grandchild['id']),
-                                get_asn_id(children['id']),
+                                grade_name,
+                                general_notetion(grandchild),
+                                general_notetion(children),
                                 'FALSE',
-                                grandchild['asn_statementNotation'],
+                                general_notetion(grandchild),
                                 grandchild['text'].encode( "utf-8" )                            
                                 )
                     except KeyError:
