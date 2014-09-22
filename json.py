@@ -19,9 +19,9 @@ parser.add_argument("-d", "--Discipline", help="Choose your Discipline (Ela or M
 parser.add_argument("-g", "--grade", help="Choose your grade level")
 args = parser.parse_args()
 #Discipline = args.Discipline """CMD Vars""" 
-Discipline = "science"
+Discipline = "math"
 #gradefilter = args.grade """CMD Vars"""
-gradefilter = "8"
+gradefilter = "9"
 EDU_LABEL = 'dcterms_educationLevel'
 PREF_LABEL = 'prefLabel'
 """Number to name dict"""
@@ -179,10 +179,12 @@ def tx_notation(child,father):
     for note in father['asn_listID'].strip():
         for childnote in child['asn_listID'].strip():
             return noteid[0], cnoteid[0] 
-def sci_notetion(item):
+        
+def general_notetion(item):
     try:
         return  item['asn_statementNotation']
     except KeyError:
+        print "faild!"
         pass   
     
     
@@ -213,7 +215,7 @@ def CCSS_ELA():
                    Standard_Package,
                    discipline_name.upper().strip(),
                    grade_name,
-                   get_asn_id(father['id']),
+                   general_notetion(father),
                    Standard_Package,
                    'FALSE',
                    father['text'].encode( "utf-8" )
@@ -228,8 +230,8 @@ def CCSS_ELA():
                         Standard_Package.strip(),
                         discipline_name.upper().strip(),
                         grade_name,
-                        get_asn_id(child['id']),
-                        get_asn_id(father['id']),
+                        general_notetion(child),
+                        general_notetion(father),
                         'FALSE',
                         child['text'].encode( "utf-8" ),
                         )
@@ -527,8 +529,7 @@ def NGSS_SCIENCE():
                    Standard_Package,
                    discipline_name.upper().strip(),
                    grade_name,
-                   #get_asn_id(father['id']),
-                   sci_notetion(father),
+                   general_notetion(father),
                    Standard_Package,
                    'FALSE',
                    father['text'].encode( "utf-8" )
@@ -541,33 +542,24 @@ def NGSS_SCIENCE():
                 Standard_Package,
                 discipline_name.upper().strip(),
                 grade_name,
-                #get_asn_id(child['id']),
-                sci_notetion(child),
-                #get_asn_id(father['id']),
-                sci_notetion(father),
+                general_notetion(child),
+                general_notetion(father),
                 'FALSE',
                 child['text'].encode( "utf-8" )
                 )
             try:
                 for grandchild in child['children']:
-                   #print child['asn_listID']
-                   #cnote = str(child['asn_listID'].strip().strip("()"))
-                   #gnote =  str(grandchild['asn_listID'].strip().strip("()"))
-                   #StatementNotation =  cnote +"."+ gnote
+              
                    csv_output(
                         Country,
                         State,
                         Standard_Package,
                         discipline_name.upper().strip(),
                         grade_name,
-                        #get_asn_id(grandchild['id']),
-                        sci_notetion(grandchild),
-                        #get_asn_id(child['id']),
-                        sci_notetion(child),
+                        general_notetion(grandchild),
+                        general_notetion(child),
                         'TRUE',
                         ' ',
-                       # child['asn_listID'],
-                        #StatementNotation,
                         grandchild['text'].encode( "utf-8" )
                         )
             except KeyError:
