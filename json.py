@@ -21,7 +21,7 @@ args = parser.parse_args()
 #Discipline = args.Discipline """CMD Vars""" 
 Discipline = "math"
 #gradefilter = args.grade """CMD Vars"""
-gradefilter = "9"
+gradefilter = "3"
 EDU_LABEL = 'dcterms_educationLevel'
 PREF_LABEL = 'prefLabel'
 """Number to name dict"""
@@ -271,23 +271,22 @@ def CCSS_Math():
            'FALSE',
            name,
            None
-           )  
-
+           )
     for father in e:
-        for age in father[EDU_LABEL]:
-            if age[PREF_LABEL] == gradefilter:
-                csv_output(Country,
-                           State,
-                           Standard_Package,
-                           discipline_name.upper().strip(),
-                           grade_name,
-                           general_notetion(father),
-                           Standard_Package,
-                           'FALSE',
-                           father['text'].encode( "utf-8" )
-                           )
-                for children in father['children']:
-                    csv_output(Country.strip(),
+       for age in father[EDU_LABEL]:
+           if age[PREF_LABEL] == gradefilter:
+               csv_output(Country,
+                          State,
+                          Standard_Package,
+                          discipline_name.upper().strip(),
+                          grade_name,
+                          general_notetion(father),
+                          Standard_Package,
+                          'FALSE',
+                          father['text'].encode( "utf-8" )
+                          )
+               for children in father['children']:
+                   csv_output(Country.strip(),
                         State.strip(),
                         Standard_Package.strip(),
                         discipline_name.upper().strip(),
@@ -297,7 +296,7 @@ def CCSS_Math():
                         'FALSE',
                         children['text'].encode( "utf-8" )                        
                         )
-                    try:
+                   try:
                         for grandchild in children['children']:
                             csv_output(Country.strip(),
                                 State.strip(),
@@ -310,12 +309,17 @@ def CCSS_Math():
                                 general_notetion(grandchild),
                                 grandchild['text'].encode( "utf-8" )                            
                                 )
-                    except KeyError:
+                   except KeyError:
                         try:
                             print children['children']
                         except KeyError:
                             continue
     logging.info('Json parding ended')
+                 
+    
+    
+    
+ 
 """TEKS ELA Parsing"""
 def TX_ELA():
     #Headr
