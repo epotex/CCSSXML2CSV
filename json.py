@@ -21,7 +21,7 @@ args = parser.parse_args()
 #Discipline = args.Discipline """CMD Vars""" 
 Discipline = "math"
 #gradefilter = args.grade """CMD Vars"""
-gradefilter = "3"
+gradefilter = "10"
 EDU_LABEL = 'dcterms_educationLevel'
 PREF_LABEL = 'prefLabel'
 """Number to name dict"""
@@ -186,8 +186,8 @@ def general_notetion(item):
     except KeyError:
         pass   
     
-    
-    
+
+
 """CCSS ELA Parsing"""
 
 def CCSS_ELA():
@@ -260,7 +260,7 @@ def CCSS_ELA():
 def CCSS_Math():
     logging.info('Json parding started')
     #First Line decleration
-    csv_output(
+    csv_output("name",
            Country,
            State.strip(),
            Standard_Package.strip(),
@@ -271,22 +271,25 @@ def CCSS_Math():
            'FALSE',
            name,
            None
-           )
+           )  
+
     for father in e:
-       for age in father[EDU_LABEL]:
-           if age[PREF_LABEL] == gradefilter:
-               csv_output(Country,
-                          State,
-                          Standard_Package,
-                          discipline_name.upper().strip(),
-                          grade_name,
-                          general_notetion(father),
-                          Standard_Package,
-                          'FALSE',
-                          father['text'].encode( "utf-8" )
-                          )
-               for children in father['children']:
-                   csv_output(Country.strip(),
+        for age in father[EDU_LABEL]:
+            if age[PREF_LABEL] == gradefilter:
+                csv_output("father",
+                           Country,
+                           State,
+                           Standard_Package,
+                           discipline_name.upper().strip(),
+                           grade_name,
+                           general_notetion(father),
+                           Standard_Package,
+                           'FALSE',
+                           father['text'].encode( "utf-8" )
+                           )
+                for children in father['children']:
+                    csv_output("child",
+                               Country.strip(),
                         State.strip(),
                         Standard_Package.strip(),
                         discipline_name.upper().strip(),
@@ -296,9 +299,10 @@ def CCSS_Math():
                         'FALSE',
                         children['text'].encode( "utf-8" )                        
                         )
-                   try:
+                    try:
                         for grandchild in children['children']:
-                            csv_output(Country.strip(),
+                            csv_output("grandchild",
+                                       Country.strip(),
                                 State.strip(),
                                 Standard_Package.strip(),
                                 discipline_name.upper().strip(),
@@ -309,17 +313,25 @@ def CCSS_Math():
                                 general_notetion(grandchild),
                                 grandchild['text'].encode( "utf-8" )                            
                                 )
-                   except KeyError:
+                            for grandgrand in grandchild['children']:
+                                csv_output("grandgrand",
+                                       Country.strip(),
+                                State.strip(),
+                                Standard_Package.strip(),
+                                discipline_name.upper().strip(),
+                                grade_name,
+                                general_notetion(grandgrand),
+                                general_notetion(grandchild),
+                                'FALSE',
+                                general_notetion(grandgrand),
+                                grandgrand['text'].encode( "utf-8" )                            
+                                )
+                    except KeyError:
                         try:
                             print children['children']
                         except KeyError:
                             continue
     logging.info('Json parding ended')
-                 
-    
-    
-    
- 
 """TEKS ELA Parsing"""
 def TX_ELA():
     #Headr
@@ -429,68 +441,65 @@ def TX_MATH():
             )
 
     for father in e:
-      
         csv_output(
                    Country,
                    State,
                    Standard_Package,
                    discipline_name.upper().strip(),
                    grade_name,
-                   get_asn_id(father['id']),
+                   father['id'],
                    Standard_Package,
                    'FALSE',
                    father['text'].encode( "utf-8" )
-                   )        
+                   )
         for child in father['children']:
-        #Child
-            csv_output(
+                csv_output(
                 Country,
                 State,
                 Standard_Package,
                 discipline_name.upper().strip(),
-                grade_name,get_asn_id(child['id']),
-                get_asn_id(father['id']),
+                grade_name,
+                child['id'],
+                father['id'],
                 'FALSE',
                 child['text'].encode( "utf-8" )
                 )
-            try:
-                for grandchild in child['children']:
-                   cnote = str(child['asn_listID'].strip().strip("()"))
-                   gnote =  str(grandchild['asn_listID'].strip().strip("()"))
-                   StatementNotation =  cnote +"."+ gnote
-                   csv_output(
-                        Country,
-                        State,
-                        Standard_Package,
-                        discipline_name.upper().strip(),
-                        grade_name,get_asn_id(grandchild['id']),
-                        get_asn_id(child['id']),
-                        'TRUE',
-                        StatementNotation,
-                        grandchild['text'].encode( "utf-8" )
-                        )
-            except KeyError:
-                continue                
-                try:
-                    for grandgrand in grandchild['children']:
+                for grand in child['children']:
                         csv_output(
+                            Country,
+                            State,
+                            Standard_Package,
+                            discipline_name.upper().strip(),
+                            grade_name,
+                            grand['id'],
+                            child['id'],
+                            'TRUE',
+                            grand['text'].encode( "utf-8" )
+                            )
+                for grandgrand in grand['children']:
+                    desc = str(child['dcterms_description']['literal'])
+                    note =  desc + "." + grand['asn_listID'].strip("()") +"." + grandgrand['asn_listID'].strip("()")
+                    csv_output(
                             Country,
                             State,
                             Standard_Package,
                             discipline_name.upper(),
                             grade_name,
-                            get_asn_id(grandgrand['id']),
-                            get_asn_id(grandchild['id']),
+                            grandgrand['id'],
+                            grand['id'],
                             'TRUE', 
+                            note,
                             grandgrand['text'].encode( "utf-8" )
                             )
-                except KeyError:
+                    try:
+                        for grandx in grandgrand["children"]:
+                            print "x"
+                    except: KeyError
                     continue
-             
-            except KeyError:
-                continue
+     
+              
+         
     logging.info('Json parding ended')
-
 
 """TEKS SCIENCE Parsing"""
 
