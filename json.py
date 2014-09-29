@@ -19,7 +19,7 @@ parser.add_argument("-d", "--Discipline", help="Choose your Discipline (Ela or M
 parser.add_argument("-g", "--grade", help="Choose your grade level")
 args = parser.parse_args()
 #Discipline = args.Discipline """CMD Vars""" 
-Discipline = "math"
+Discipline = "txmath"
 #gradefilter = args.grade """CMD Vars"""
 gradefilter = "10"
 EDU_LABEL = 'dcterms_educationLevel'
@@ -464,38 +464,40 @@ def TX_MATH():
                 'FALSE',
                 child['text'].encode( "utf-8" )
                 )
-                for grand in child['children']:
-                        csv_output(
-                            Country,
-                            State,
-                            Standard_Package,
-                            discipline_name.upper().strip(),
-                            grade_name,
-                            grand['id'],
-                            child['id'],
-                            'TRUE',
-                            grand['text'].encode( "utf-8" )
-                            )
-                for grandgrand in grand['children']:
-                    desc = str(child['dcterms_description']['literal'])
-                    note =  desc + "." + grand['asn_listID'].strip("()") +"." + grandgrand['asn_listID'].strip("()")
-                    csv_output(
-                            Country,
-                            State,
-                            Standard_Package,
-                            discipline_name.upper(),
-                            grade_name,
-                            grandgrand['id'],
-                            grand['id'],
-                            'TRUE', 
-                            note,
-                            grandgrand['text'].encode( "utf-8" )
-                            )
-                    try:
-                        for grandx in grandgrand["children"]:
-                            print "x"
-                    except: KeyError
-                    continue
+                try:
+                    for grand in child['children']:
+                            #desc = str(child['dcterms_description']['literal'])
+                            #cnote =  desc + "." + grandgrand['asn_listID'].strip("()")
+
+                            csv_output(
+                                Country,
+                                State,
+                                Standard_Package,
+                                discipline_name.upper().strip(),
+                                grade_name,
+                                grand['asn_listID'],
+                                Standard_Package,
+                                'TRUE',
+                                grand['text'].encode( "utf-8" )
+                                )
+                            for grandgrand in grand['children']:
+                                desc = str(child['dcterms_description']['literal'])
+                                note =  desc + "." + grand['asn_listID'].strip("()") +"." + grandgrand['asn_listID'].strip("()")
+                                csv_output(
+                                        Country,
+                                        State,
+                                        Standard_Package,
+                                        discipline_name.upper(),
+                                        grade_name,
+                                        note,
+                                        grand['asn_listID'],
+                                        'TRUE', 
+                                        note,
+                                        grandgrand['text'].encode( "utf-8" )
+                                        )
+
+                except: KeyError
+                continue
      
               
          
