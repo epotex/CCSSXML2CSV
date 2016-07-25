@@ -1,4 +1,4 @@
 CCSSXML2CSV
 ===========
 
-Convert CCSS XML files from "http://www.corestandards.org/" to a csv
+Convert CCSS json files from "asn.desire2learn.com" to a csv
